@@ -95,6 +95,7 @@ public class MainMenu {
                     Helltaker.musicPlayer.stopMusic();
                     displayMenu(0);
                 } else if (currentOption == 4) {
+                    display.clearScreen();
                     isRunning = false;
                     Helltaker.userCheck();
                 } else if (currentOption == 5) {
