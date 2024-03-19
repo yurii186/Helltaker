@@ -2,6 +2,7 @@ package test.sk.tuke.gamestudio.service;
 
 import main.sk.tuke.gamestudio.service.CommentServiceJDBC;
 import main.sk.tuke.gamestudio.entity.Comment;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,6 +19,12 @@ class CommentServiceJDBCTest {
     void setUp() {
         // Очистка таблицы комментариев перед каждым тестом.
         // Это предотвратит накопление тестовых данных и обеспечит независимость тестов.
+        service.reset();
+    }
+
+    @AfterEach
+    void tearDown() {
+        // Очистите таблицу после выполнения каждого теста
         service.reset();
     }
 
