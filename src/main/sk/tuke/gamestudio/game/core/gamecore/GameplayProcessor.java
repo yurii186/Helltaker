@@ -342,6 +342,7 @@ public class GameplayProcessor extends Level {
             String array = ".";
             gameBoard[x1][y1] = hero;
             gameBoard[x][y] = array;
+            key = false;
         }
         display(gameBoard);
     }
@@ -453,10 +454,10 @@ public class GameplayProcessor extends Level {
     }
 
     public void game(String[][] gameBoard, int level, UserInterface ui) {
-
-
+        key = false;
         int steps = displayGameBoardLevel(gameBoard, level);
-        while (true) {
+        boolean isRunning = true;
+        while (isRunning) {
 
             if (steps == -1)
                 steps = displayGameBoardLevel(gameBoard, level);
@@ -473,9 +474,9 @@ public class GameplayProcessor extends Level {
                 MainMenu mainMenu = new MainMenu();
                 Helltaker.musicPlayer.startMusic(false);
                 mainMenu.displayMenu(0);
-                break;
+                isRunning = false;
             } else if (steps == -3) {
-                break;
+                isRunning = false;
             }
         }
     }
