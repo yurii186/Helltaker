@@ -5,8 +5,6 @@ import main.sk.tuke.gamestudio.game.core.observer.UserInterface;
 import main.sk.tuke.gamestudio.game.ui.Helltaker;
 import main.sk.tuke.gamestudio.game.ui.MainMenu;
 
-import java.util.Scanner;
-
 public class GameplayProcessor extends Level {
     int HeroX = 0;
     int HeroY = 0;
