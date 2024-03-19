@@ -64,8 +64,14 @@ public class Helltaker {
     }
 
     private static void loginUser(Scanner scanner) {
+        Display display = new Display();
         System.out.println("Enter username:");
         String username = scanner.nextLine();
+        if (username.isEmpty()) {
+            display.clearScreen();
+            System.out.println("Username cannot be empty.");
+            Helltaker.userCheck();
+        }
         name = username;
         System.out.println("Enter password:");
         String password = scanner.nextLine();
@@ -80,7 +86,6 @@ public class Helltaker {
                 System.out.println("Login successful.");
                 // Add your code here for successful login
             } else {
-                Display display = new Display();
                 display.clearScreen();
                 System.out.println("Login failed: Invalid username or password.");
                 Helltaker.userCheck();
