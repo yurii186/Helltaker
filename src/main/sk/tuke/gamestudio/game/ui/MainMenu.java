@@ -6,7 +6,7 @@ import main.sk.tuke.gamestudio.game.core.gamecore.Display;
 import main.sk.tuke.gamestudio.entity.Rating;
 import main.sk.tuke.gamestudio.game.core.observer.ConsoleOutputObserver;
 import main.sk.tuke.gamestudio.game.core.observer.GameObserver;
-import main.sk.tuke.gamestudio.game.core.observer.UserInterface;
+import main.sk.tuke.gamestudio.game.core.utils.UserInterface;
 import main.sk.tuke.gamestudio.game.core.utils.MusicPlayer;
 import main.sk.tuke.gamestudio.service.CommentServiceJDBC;
 import main.sk.tuke.gamestudio.service.RaitingExceptionJDBC;

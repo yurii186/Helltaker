@@ -1,6 +1,6 @@
 package main.sk.tuke.gamestudio.game.ui;
 
-import main.sk.tuke.gamestudio.game.core.observer.UserInterface;
+import main.sk.tuke.gamestudio.game.core.utils.UserInterface;
 
 import java.util.Scanner;
 

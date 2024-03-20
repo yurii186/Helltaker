@@ -2,7 +2,7 @@ package main.sk.tuke.gamestudio.game.core.gamecore;
 
 import main.sk.tuke.gamestudio.game.core.db.ScoreUpdater;
 import main.sk.tuke.gamestudio.game.core.observer.GameObserver;
-import main.sk.tuke.gamestudio.game.core.observer.UserInterface;
+import main.sk.tuke.gamestudio.game.core.utils.UserInterface;
 import main.sk.tuke.gamestudio.game.ui.Helltaker;
 import main.sk.tuke.gamestudio.game.core.utils.GameTimer;
 import main.sk.tuke.gamestudio.game.ui.MainMenu;

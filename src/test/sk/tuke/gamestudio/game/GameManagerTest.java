@@ -2,7 +2,7 @@ package test.sk.tuke.gamestudio.game;
 
 import main.sk.tuke.gamestudio.game.core.gamecore.GameManager;
 import main.sk.tuke.gamestudio.game.core.observer.GameObserver;
-import main.sk.tuke.gamestudio.game.core.observer.UserInterface;
+import main.sk.tuke.gamestudio.game.core.utils.UserInterface;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
