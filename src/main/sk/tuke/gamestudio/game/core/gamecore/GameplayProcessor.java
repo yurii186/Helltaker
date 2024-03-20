@@ -49,7 +49,7 @@ public class GameplayProcessor extends Level {
                     index = index + PushBox(gameBoard, x, y, x - 1, y, x - 2, y);
                 } else if (x != 0 && gameBoard[x - 1][y].equals("☠")) {
 
-                    if (x - 2 == -1 || gameBoard[x - 2][y] == null || gameBoard[x - 2][y].equals("□") || gameBoard[x - 2][y].equals("☰")) {
+                    if (x - 2 == -1 || gameBoard[x - 2][y] == null || gameBoard[x - 2][y].equals("□") || gameBoard[x - 2][y].equals("☰") || gameBoard[x - 2][y].equals("■")) {
                         gameBoard[x - 1][y] = ".";
                     } else if (gameBoard[x - 2][y].equals(".")) {
                         String enemy = gameBoard[x - 1][y];
@@ -87,7 +87,7 @@ public class GameplayProcessor extends Level {
                 else if (x != gameBoard.length && x != (gameBoard.length - 1) && x + 2 != gameBoard.length && (gameBoard[x + 1][y].equals("■") || gameBoard[x + 1][y].equals("◙") || gameBoard[x + 1][y].equals("◘") || gameBoard[x + 1][y].equals("▢"))) {
                     index = index + PushBox(gameBoard, x, y, x + 1, y, x + 2, y);
                 } else if (x != gameBoard.length && x != (gameBoard.length - 1) && gameBoard[x + 1][y].equals("☠")) {
-                    if (x + 2 == gameBoard.length || gameBoard[x + 2][y] == null || gameBoard[x + 2][y].equals("□") || gameBoard[x + 2][y].equals("☰")) {
+                    if (x + 2 == gameBoard.length || gameBoard[x + 2][y] == null || gameBoard[x + 2][y].equals("□") || gameBoard[x + 2][y].equals("☰") || gameBoard[x + 2][y].equals("■")) {
                         gameBoard[x + 1][y] = ".";
                     } else if (x + 2 != gameBoard.length && gameBoard[x + 2][y].equals(".")) {
                         String enemy = gameBoard[x + 1][y];
@@ -127,7 +127,7 @@ public class GameplayProcessor extends Level {
                 } else if (y != 1 && y != 0 && gameBoard[x][y - 1].equals("☠")) {
                     String enemy = gameBoard[x][y - 1];
                     String array = gameBoard[x][y - 2];
-                    if (gameBoard[x][y - 2] == null || gameBoard[x][y - 2].equals("□") || gameBoard[x][y - 2].equals("☰")) {
+                    if (gameBoard[x][y - 2] == null || gameBoard[x][y - 2].equals("□") || gameBoard[x][y - 2].equals("☰") || gameBoard[x][y - 2].equals("■")) {
                         gameBoard[x][y - 1] = ".";
                     } else if (gameBoard[x][y - 2].equals(".")) {
                         gameBoard[x][y - 2] = enemy;
@@ -163,7 +163,7 @@ public class GameplayProcessor extends Level {
                     index = index + PushBox(gameBoard, x, y, x, y + 1, x, y + 2);
                 } else if (y != gameBoard[0].length && y != (gameBoard[0].length - 1) && gameBoard[x][y + 1].equals("☠")) {
 
-                    if (y + 2 != gameBoard[0].length && gameBoard[x][y + 2] == null || gameBoard[x][y + 2].equals("□") || gameBoard[x][y + 2].equals("☰")) {
+                    if (y + 2 != gameBoard[0].length && gameBoard[x][y + 2] == null || gameBoard[x][y + 2].equals("□") || gameBoard[x][y + 2].equals("☰") || gameBoard[x][y + 2].equals("■")) {
                         gameBoard[x][y + 1] = ".";
                     } else if (gameBoard[x][y + 2].equals(".")) {
                         String enemy = gameBoard[x][y + 1];
