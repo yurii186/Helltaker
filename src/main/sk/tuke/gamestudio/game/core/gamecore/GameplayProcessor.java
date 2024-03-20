@@ -450,7 +450,7 @@ public class GameplayProcessor extends Level {
         }
     }
     private boolean isValidInput(String input) {
-        return input.equals("w") || input.equals("d") || input.equals("a") || input.equals("s");
+        return input.equals("w") || input.equals("d") || input.equals("a") || input.equals("s") || input.equals("q") || input.equals("n") || input.equals("e") || input.equals("r");
     }
     public void game(String[][] gameBoard, int level, UserInterface ui) {
         key = false;
@@ -476,6 +476,10 @@ public class GameplayProcessor extends Level {
                     display(gameBoard);
                     gameBoard[HeroX][HeroY] = x;
                 }
+                else {
+                    display(gameBoard);
+                }
+                observer.onStepsUpdated(steps);
             } while (!isValidInput(input));
 
             if ((steps = move(gameBoard, steps, input)) == -2) {
