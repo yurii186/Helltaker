@@ -40,7 +40,7 @@ public class MainMenu {
                     } else if (i == 3) {
                         System.out.println("> " + i + ". RATE THE GAME");
                     } else if (i == 4) {
-                        System.out.println("> " + i + ". Login menu");
+                        System.out.println("> " + i + ". LOGIN MENU");
                     } else {
                         System.out.println("> " + i + ". EXIT");
                     }
