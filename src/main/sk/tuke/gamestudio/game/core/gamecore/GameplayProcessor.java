@@ -278,7 +278,6 @@ public class GameplayProcessor extends Level {
                 }
             }
         }
-        //   display(gameBoard);
     }
 
     private int StepSpikeY(String[][] gameBoard, int x, int y, int y1) {
@@ -450,7 +449,9 @@ public class GameplayProcessor extends Level {
             return 1;
         }
     }
-
+    private boolean isValidInput(String input) {
+        return input.equals("w") || input.equals("d") || input.equals("a") || input.equals("s");
+    }
     public void game(String[][] gameBoard, int level, UserInterface ui) {
         key = false;
         int steps = displayGameBoardLevel(gameBoard, level);
@@ -465,8 +466,18 @@ public class GameplayProcessor extends Level {
             }
 
             observer.onStepsUpdated(steps);
-          //  Scanner scanner = new Scanner(System.in);
-            String input = ui.requestInput();
+
+            String input;
+            do {
+                input = ui.requestInput();
+                if(findHeroesX(gameBoard) == -1){
+                    String x = gameBoard[HeroX][HeroY];
+                    gameBoard[HeroX][HeroY] = "♀";
+                    display(gameBoard);
+                    gameBoard[HeroX][HeroY] = x;
+                }
+            } while (!isValidInput(input));
+
             if ((steps = move(gameBoard, steps, input)) == -2) {
                 Helltaker.musicPlayer.getMusic().stopMusic();
                 MainMenu mainMenu = new MainMenu();
