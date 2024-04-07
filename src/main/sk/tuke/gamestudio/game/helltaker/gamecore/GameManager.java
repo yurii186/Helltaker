@@ -1,44 +1,59 @@
-package main.sk.tuke.gamestudio.game.core.gamecore;
+package main.sk.tuke.gamestudio.game.helltaker.gamecore;
 
-import main.sk.tuke.gamestudio.game.core.db.ScoreUpdater;
-import main.sk.tuke.gamestudio.game.core.observer.GameObserver;
-import main.sk.tuke.gamestudio.game.core.utils.UserInterface;
-import main.sk.tuke.gamestudio.game.ui.Helltaker;
-import main.sk.tuke.gamestudio.game.core.utils.GameTimer;
-import main.sk.tuke.gamestudio.game.ui.MainMenu;
+import main.sk.tuke.gamestudio.game.helltaker.observer.GameObserver;
+import main.sk.tuke.gamestudio.game.helltaker.utils.MusicPlayer;
+import main.sk.tuke.gamestudio.game.helltaker.utils.UserInterface;
+import main.sk.tuke.gamestudio.game.helltaker.ui.Helltaker;
+import main.sk.tuke.gamestudio.game.helltaker.utils.GameTimer;
+import main.sk.tuke.gamestudio.game.helltaker.ui.MainMenu;
 import main.sk.tuke.gamestudio.entity.Score;
-import main.sk.tuke.gamestudio.service.ScoreServiceJDBC;
+import main.sk.tuke.gamestudio.service.ScoreService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.*;
 
+
+@Component
 public class GameManager {
     private int level = 0;
-    private int maxLevel = 8;
-
+    private final int maxLevel = 8;
     private final UserInterface ui;
     private final GameObserver gameObserver;
+    private final ScoreService scoreService; // Используем ScoreService вместо ScoreServiceJDBC
+    private final Helltaker helltaker;
+    private final MusicPlayer musicPlayer;
+    private final MainMenu mainMenu;
 
-    public GameManager(UserInterface ui, GameObserver gameObserver) {
+    @Autowired
+    public GameManager(UserInterface ui, GameObserver gameObserver, ScoreService scoreService, MusicPlayer musicPlayer, @Lazy MainMenu mainMenu,@Lazy Helltaker helltaker) {
         this.ui = ui;
         this.gameObserver = gameObserver;
+        this.scoreService = scoreService;
+        this.helltaker = helltaker;
+        this.musicPlayer = musicPlayer;
+        this.mainMenu = mainMenu;
     }
 
 
     public void startGame() {
 
-        GameplayProcessor gameplayProcessor = new GameplayProcessor();
+        GameplayProcessor gameplayProcessor = new GameplayProcessor(mainMenu, musicPlayer);
         // ConsoleOutputObserver observer = new ConsoleOutputObserver();
         gameplayProcessor.setGameObserver(gameObserver);
 
-        Helltaker.musicPlayer.startMusic(true);
+        //Helltaker.musicPlayer.startMusic(true);
+        musicPlayer.startMusic(true);
 
-        Score score = new Score(null, null, 0, null);
-        score.setGame(Helltaker.game);
-        Helltaker helltaker = new Helltaker();
-        score.setPlayer(helltaker.getName());
-        score.setPlayedOn(new Date());
+//        Score score = new Score(null, null, 0, null);
+//        score.setGame(Helltaker.game);
+//        //Helltaker helltaker = new Helltaker();
+//        score.setPlayer(helltaker.getName());
+//        score.setPlayedOn(new Date());
 
+        int score = 0;
 
 
         List<String[][]> levelsList = new ArrayList<>();
@@ -57,25 +72,27 @@ public class GameManager {
             GameTimer gameTimer = new GameTimer();
             gameTimer.startTimer();
             gameplayProcessor.game(levelsList.get(level), level, ui);
-            score.setPoints(gameTimer.getScore() + score.getPoints());
+            score += (gameTimer.getScore());
             gameTimer.stopTimer();
             goToNextLevel();
         }
-        ScoreUpdater scoreUpdater = new ScoreUpdater();
-        if(Helltaker.name != null)
-            scoreUpdater.addOrUpdateScore(score);
+        // ScoreUpdater scoreUpdater = new ScoreUpdater();
+        if(helltaker.getName() != null)
+            scoreService.addScore(new Score(helltaker.getGame(), helltaker.getName(), score, new Date()));
+           // scoreUpdater.addOrUpdateScore(score);
 
 
-        ui.onGameEnd(score.getPoints());
+        ui.onGameEnd(score);
 
-        endGame(score);
+        endGame();
 
     }
 
-    private void endGame(Score score) {
+    private void endGame() {
         // Отображение лучших игроков
-        ScoreServiceJDBC topPlayers = new ScoreServiceJDBC();
-        List<Score> topPlayersList = topPlayers.getTopScores(score.getGame());
+       // ScoreServiceJDBC topPlayers = new ScoreServiceJDBC();
+       // List<Score> topPlayersList = topPlayers.getTopScores(score.getGame());
+        List<Score> topPlayersList = scoreService.getTopScores(helltaker.getGame());
         ui.displayMessage("Top 10 Players:");
         for (Score player : topPlayersList) {
             ui.displayMessage(player.toString());
@@ -116,7 +133,7 @@ public class GameManager {
     }
 
     private void returnToMainMenu() {
-        MainMenu mainMenu = new MainMenu();
+       // MainMenu mainMenu = new MainMenu();
         mainMenu.displayMenu(0);
     }
 

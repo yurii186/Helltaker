@@ -1,4 +1,4 @@
-package main.sk.tuke.gamestudio.game.core.utils;
+package main.sk.tuke.gamestudio.game.helltaker.utils;
 
 import java.util.Timer;
 import java.util.TimerTask;

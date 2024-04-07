@@ -1,4 +1,4 @@
-package main.sk.tuke.gamestudio.game.core.gamecore;
+package main.sk.tuke.gamestudio.game.helltaker.utils;
 
 //package main.sk.tuke.gamestudio.entity;
 public class Display {

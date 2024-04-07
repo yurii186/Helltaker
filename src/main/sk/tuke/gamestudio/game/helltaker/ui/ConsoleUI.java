@@ -1,9 +1,11 @@
-package main.sk.tuke.gamestudio.game.ui;
+package main.sk.tuke.gamestudio.game.helltaker.ui;
 
-import main.sk.tuke.gamestudio.game.core.utils.UserInterface;
+import main.sk.tuke.gamestudio.game.helltaker.utils.UserInterface;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
+@Component
 public class ConsoleUI implements UserInterface {
     private final Scanner scanner = new Scanner(System.in);
 

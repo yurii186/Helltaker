@@ -1,7 +1,7 @@
 package test.sk.tuke.gamestudio.service;
 
-import main.sk.tuke.gamestudio.game.core.db.DBConfig;
-import main.sk.tuke.gamestudio.service.RaitingExceptionJDBC;
+import main.sk.tuke.gamestudio.game.helltaker.db.DBConfig;
+import main.sk.tuke.gamestudio.service.RaitingServiceJDBC;
 import main.sk.tuke.gamestudio.entity.Rating;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +13,7 @@ import java.util.Date;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RatingServiceJDBCTest {
-    private RaitingExceptionJDBC service = new RaitingExceptionJDBC();
+    private RaitingServiceJDBC service = new RaitingServiceJDBC();
 
     @BeforeEach
     void setUp() {

@@ -1,4 +1,4 @@
-package main.sk.tuke.gamestudio.game.core.db;
+package main.sk.tuke.gamestudio.game.helltaker.db;
 
 //import java.sql.*;
 //public class DatabaseConnectionManager {

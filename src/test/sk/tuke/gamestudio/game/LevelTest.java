@@ -1,6 +1,6 @@
 package test.sk.tuke.gamestudio.game;
 
-import main.sk.tuke.gamestudio.game.core.gamecore.Level;
+import main.sk.tuke.gamestudio.game.helltaker.gamecore.Level;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

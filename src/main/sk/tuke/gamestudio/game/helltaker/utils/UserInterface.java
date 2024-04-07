@@ -1,4 +1,4 @@
-package main.sk.tuke.gamestudio.game.core.utils;
+package main.sk.tuke.gamestudio.game.helltaker.utils;
 
 public interface UserInterface {
     void displayMessage(String message);

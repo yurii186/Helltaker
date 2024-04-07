@@ -1,6 +1,6 @@
-package main.sk.tuke.gamestudio.game.core.gamecore;
+package main.sk.tuke.gamestudio.game.helltaker.gamecore;
 
-import main.sk.tuke.gamestudio.game.core.gamecore.Display;
+import main.sk.tuke.gamestudio.game.helltaker.utils.Display;
 
 import java.util.Arrays;
 

@@ -1,11 +1,18 @@
-package main.sk.tuke.gamestudio.game.core.gamecore;
+package main.sk.tuke.gamestudio.game.helltaker.gamecore;
 
-import main.sk.tuke.gamestudio.game.core.observer.GameObserver;
-import main.sk.tuke.gamestudio.game.core.utils.UserInterface;
-import main.sk.tuke.gamestudio.game.ui.Helltaker;
-import main.sk.tuke.gamestudio.game.ui.MainMenu;
+import main.sk.tuke.gamestudio.game.helltaker.observer.GameObserver;
+import main.sk.tuke.gamestudio.game.helltaker.utils.MusicPlayer;
+import main.sk.tuke.gamestudio.game.helltaker.utils.UserInterface;
+import main.sk.tuke.gamestudio.game.helltaker.ui.MainMenu;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
 
+@Service
 public class GameplayProcessor extends Level {
+
+    private final MainMenu mainMenu;
+    private final MusicPlayer musicPlayer;
+
     int HeroX = 0;
     int HeroY = 0;
 
@@ -13,6 +20,11 @@ public class GameplayProcessor extends Level {
 
     boolean hideSpike = false;
     private GameObserver observer;
+
+    public GameplayProcessor(@Lazy MainMenu mainMenu, MusicPlayer musicPlayer) {
+        this.mainMenu = mainMenu;
+        this.musicPlayer = musicPlayer;
+    }
 
     public void setGameObserver(GameObserver observer) {
         this.observer = observer;
@@ -483,9 +495,11 @@ public class GameplayProcessor extends Level {
             } while (!isValidInput(input));
 
             if ((steps = move(gameBoard, steps, input)) == -2) {
-                Helltaker.musicPlayer.getMusic().stopMusic();
-                MainMenu mainMenu = new MainMenu();
-                Helltaker.musicPlayer.startMusic(false);
+                musicPlayer.stopMusic();
+                //Helltaker.musicPlayer.getMusic().stopMusic();
+                //MainMenu mainMenu = new MainMenu();
+                //Helltaker.musicPlayer.startMusic(false);
+                musicPlayer.startMusic(false);
                 mainMenu.displayMenu(0);
                 isRunning = false;
             } else if (steps == -3) {

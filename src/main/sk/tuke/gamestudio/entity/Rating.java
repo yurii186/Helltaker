@@ -1,22 +1,44 @@
 package main.sk.tuke.gamestudio.entity;
 
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import java.io.Serializable;
 import java.util.Date;
 
-public class Rating {
+@Entity
+public class Rating implements Serializable {
+
+    @Id
+    @GeneratedValue
+    private int ident;
+
     private String game;
 
     private String player;
 
     private int rating;
 
+    @Column(name = "ratedon", nullable = false)
     private Date ratedOn;
+
+    public Rating(){}
 
     public Rating(String game, String player, int rating, Date ratedOn) {
         this.game = game;
         this.player = player;
         this.rating = rating;
         this.ratedOn = ratedOn;
+    }
+
+    public int getIdent() {
+        return ident;
+    }
+
+    public void setIdent(int ident) {
+        this.ident = ident;
     }
 
     public String getGame() {

@@ -1,10 +1,13 @@
-package main.sk.tuke.gamestudio.game.core.utils;
+package main.sk.tuke.gamestudio.game.helltaker.utils;
+
+import org.springframework.stereotype.Component;
 
 import java.net.URL;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
+@Component
 public class MusicPlayer {
     private Clip clip;
 

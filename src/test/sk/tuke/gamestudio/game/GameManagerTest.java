@@ -1,8 +1,8 @@
 package test.sk.tuke.gamestudio.game;
 
-import main.sk.tuke.gamestudio.game.core.gamecore.GameManager;
-import main.sk.tuke.gamestudio.game.core.observer.GameObserver;
-import main.sk.tuke.gamestudio.game.core.utils.UserInterface;
+import main.sk.tuke.gamestudio.game.helltaker.gamecore.GameManager;
+import main.sk.tuke.gamestudio.game.helltaker.observer.GameObserver;
+import main.sk.tuke.gamestudio.game.helltaker.utils.UserInterface;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +17,7 @@ class GameManagerTest {
     void setUp() {
         uiMock = mock(UserInterface.class);
         gameObserverMock = mock(GameObserver.class);
-        gameManager = new GameManager(uiMock, gameObserverMock);
+        //gameManager = new GameManager(uiMock, gameObserverMock);
 
         // Настройка мока UserInterface для возвращения "e" при запросе ввода,
         // имитируя пользователя, желающего выйти из игры.
