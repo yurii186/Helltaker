@@ -1,0 +1,231 @@
+/* Общие стили для body и html, устанавливающие черный фон на всей странице */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #020317;
+    font-family: Arial, sans-serif; /* Устанавливаем шрифт по умолчанию */
+}
+
+/* Контейнер для фонового изображения */
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url('image/MainMenu.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 75vh; /* Занимает 75% высоты экрана */
+}
+
+/* Контейнер для кнопок, располагается под изображением */
+.buttons-container {
+    width: 100vw;
+    height: auto; /* Занимает оставшиеся 25% высоты экрана */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around; /* Равномерное распределение кнопок */
+    color: white;
+}
+
+.menu-option {
+    margin: 5px 0;
+    padding: 8px 20px; /* Уменьшаем вертикальные отступы */
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(to right, #333, #444, #333);
+    color: white;
+    font-size: 16px; /* При необходимости можно уменьшить размер шрифта */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.menu-option.active, .menu-option:hover {
+    background: linear-gradient(to right, #555, #666, #555);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+
+/* Контейнер для комментариев */
+.comments-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60%; /* Примерно 60% ширины страницы занимают комментарии */
+    margin: 0 auto; /* Центрируем контейнер */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Слегка прозрачный белый фон для читаемости */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Небольшая тень для выделения */
+    z-index: 2; /* Выше фоновых изображений */
+}
+
+/* Стиль для каждого комментария внутри контейнера */
+.comment {
+    margin: 10px 0;
+    padding: 10px;
+    border-left: 3px solid #333; /* Линия слева для акцента */
+    background-color: white; /* Фон комментария */
+    width: 100%; /* Занимает всю ширину контейнера комментариев */
+}
+
+/* Фоновые изображения по бокам */
+.side-images {
+    position: fixed;
+    top: 0;
+    width: 20%; /* Каждое изображение занимает 20% ширины страницы */
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    z-index: 1; /* Ниже контента с комментариями */
+}
+
+/* Левое фоновое изображение */
+.side-image-left {
+    left: 0;
+    background-image: url('image/testcomment.webp'); /* Путь к вашему изображению слева */
+}
+
+/* Правое фоновое изображение */
+.side-image-right {
+    right: 0;
+    background-image: url('image/testcomment.webp'); /* Путь к вашему изображению справа */
+}
+
+.star {
+    font-size: 40px;
+    color: #ccc; /* Цвет неактивной звезды */
+}
+
+.filled {
+    color: gold; /* Цвет активной звезды */
+}
+
+.rating-text {
+    margin: 5px 0;
+    padding: 8px 20px;
+    font-size: 18px; /* Тот же размер шрифта, что и для кнопок */
+    color: white; /* Цвет текста */
+    background: none; /* Нет фона, так как это не кнопка */
+    display: inline-block; /* Используем inline-block для правильной работы padding */
+}
+
+
+
+.chapter-select-container {
+    display: flex; /* Изменено на flex для горизонтального расположения */
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Занимает всю высоту видимой области */
+}
+
+.sides-image-left, .sides-image-right {
+    position: fixed; /* Изменено на fixed для фиксации по бокам */
+    top: 0; /* Верхняя граница у экрана */
+    width: 35%; /* Ширина изображений по бокам */
+    height: 100vh;
+    background-size: cover; /* Обеспечивает покрытие всей доступной площади */
+    background-repeat: no-repeat; /* Изображение не будет повторяться */
+}
+
+.sides-image-left {
+    left: 0; /* Расположение у левого края */
+    background-image: url('image/comment.png'); /* Изменен путь к вашему изображению слева */
+}
+
+.sides-image-right {
+    right: 0; /* Расположение у правого края */
+    background-image: url('image/comment.png'); /* Изменен путь к вашему изображению справа */
+}
+
+.chapters-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px; /* Увеличенный отступ между кнопками */
+    padding: 20px;
+    z-index: 1; /* Устанавливаем поверх боковых изображений */
+}
+
+.chapter-button {
+    background: #333;
+    color: white;
+    border: none;
+    padding: 15px 30px; /* Увеличенные боковые отступы для лучшего вида */
+    cursor: pointer;
+    font-size: 35px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.chapter-button:hover {
+    background: #555;
+}
+
+@media (max-width: 600px) {
+    html, body {
+        font-size: 14px;
+    }
+
+    .menu-container {
+        height: 50vh;
+        background-position: top;
+    }
+
+    .buttons-container {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .menu-option {
+        font-size: 16px;
+        padding: 10px 15px;
+    }
+
+    .menu-option.active, .menu-option:hover {
+        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+
+    .comments-container {
+        width: 90%;
+        padding: 10px;
+        background-color: rgba(255, 255, 255, 1); /* Увеличиваем непрозрачность для лучшей читаемости */
+    }
+
+    .comment {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .side-images, .sides-image-left, .sides-image-right {
+        display: none; /* Скрываем боковые изображения */
+    }
+
+    .chapter-select-container {
+        flex-direction: column;
+    }
+
+    .chapters-container {
+        gap: 30px; /* Уменьшаем отступы между элементами */
+    }
+
+    .chapter-button {
+        font-size: 24px;
+        padding: 10px 20px;
+    }
+
+    .rating-text {
+        font-size: 16px; /* Уменьшаем размер текста */
+    }
+
+    .star, .filled {
+        font-size: 30px; /* Уменьшаем размер звезд */
+    }
+}
+
+

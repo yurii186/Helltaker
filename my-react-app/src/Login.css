@@ -1,0 +1,174 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Выравнивание по вертикали */
+    background-image: url('image/helltaker_image.jpeg'); /* Замените 'path/to/your/image.jpg' на путь к вашему изображению */
+    background-size: contain; /* Изменение размера изображения так, чтобы оно целиком помещалось в контейнер */
+    background-position: center; /* Позволяет изображению быть выровненным по центру */
+}
+
+
+.login-form {
+    margin-top: 500px; /* Сдвигаем содержимое вниз на 50px */
+}
+.login-form input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px
+}
+
+.login-form button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #010911;
+    color: #fff;
+    cursor: pointer;
+    margin-left: 10px; /* Добавляем отступ слева */
+    font-size: 16px
+}
+
+.message-container {
+    height: 40px; /* Высота контейнера сообщения, соответствующая высоте вашего сообщения */
+    padding: 10px;
+}
+
+.message {
+    position: relative;
+    bottom: 50px;
+    margin-left: 40px;
+    font-size: 20px;
+    color: red;
+    background-color: #010911;
+}
+
+/*.message-register{*/
+/*    width: 100%;*/
+/*    max-width: 540px;*/
+/*    position: absolute;*/
+/*    top: 660px;*/
+/*    left: 730px;*/
+/*    font-size: 20px;*/
+/*    color: red;*/
+/*    background-color: #010911;*/
+/*}*/
+
+
+.message-register{
+    width: 100%;
+    max-width: 540px;
+    font-size: 20px;
+    position: relative;
+    margin-bottom: 80px;
+    margin-left: 20px;
+    color: red;
+    background-color: #010911;
+}
+
+.message-login{
+    margin-left: 20px;
+    width: 100%;
+    height: 20px;
+    padding: 10px;
+    font-size: 20px;
+    color: red;
+    background-color: #010911;
+    max-width: 400px;
+}
+
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.create-account-btn {
+    width: 100%;
+    margin-left: 10px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.create-account-btn:hover {
+    background-color: #0056b3;
+}
+
+.login-guest {
+    width: 100%;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    position: relative; /* Задаем относительное позиционирование */
+    right: 4px; /* Сдвигаем элемент влево на 100px */
+}
+
+.button-container-register {
+    width: 540px;
+    min-font-size: 16px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column; /* Для вертикального расположения кнопок */
+    position: relative;
+    bottom: 100px;
+    justify-content: flex-end;
+}
+.button-container-register button{
+    margin-bottom: 10px;
+}
+
+@media (max-width: 600px) {
+    .login-container {
+        padding: 20px; /* добавление небольшого отступа */
+        background-size: cover; /* для улучшения вида фонового изображения */
+    }
+
+    .login-form, .message-container, .button-container {
+        width: 98%; /* элементы занимают всю ширину экрана */
+    }
+
+    .login-form input, .login-form button, .message, .create-account-btn, .login-guest {
+        font-size: 12px; /* уменьшение размера шрифта для мобильных устройств */
+    }
+
+    .message {
+        position: static;
+        width: 90%;
+        margin: 50px auto;
+        font-size: 12px;
+    }
+
+     .message-login {
+        position: static; /* отключение абсолютного позиционирования */
+        width: 90%; /* уменьшение ширины для улучшения читаемости */
+        margin: 10px auto; /* автоматическое центрирование */
+        font-size: 12px; /* уменьшение размера шрифта */
+    }
+
+    .message-register{
+        width: 90%;
+        max-width: 540px;
+        position: static;
+        margin: 10px auto;
+        font-size: 12px;
+    }
+
+    .button-container-register {
+        width: 98%; /* кнопки занимают всю ширину */
+        bottom: 0; /* устранение сдвига вниз */
+        padding: 10px 0; /* добавление вертикального отступа */
+    }
+}

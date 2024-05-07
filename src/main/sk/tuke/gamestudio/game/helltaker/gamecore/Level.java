@@ -17,7 +17,7 @@ public class Level extends Display {
             this.hideSpike = false;
             // Помещение двух объектов в одну клетку
             gameBoard[0][5] = "♀";
-
+            //gameBoard[5][4] = "♀";
             gameBoard[5][6] = "❤";
 
             gameBoard[0][6] = "□";

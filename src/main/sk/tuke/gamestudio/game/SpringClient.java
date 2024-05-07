@@ -20,7 +20,7 @@ import org.springframework.web.client.RestTemplate;
 @ComponentScan(excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX,
         pattern = "main.sk.tuke.gamestudio.server.*"))
 
-public class Main {
+public class SpringClient {
     public static void main(String[] args) {
         // Запускаем Spring приложение и получаем контекст
 //        ConfigurableApplicationContext context = SpringApplication.run(Main.class, args);
@@ -29,7 +29,7 @@ public class Main {
       //  Helltaker helltaker = context.getBean(Helltaker.class);
       //  helltaker.userCheck();
         //SpringApplication.run(Main.class);
-        new SpringApplicationBuilder(Main.class).web(WebApplicationType.NONE).run(args);
+        new SpringApplicationBuilder(SpringClient.class).web(WebApplicationType.NONE).run(args);
     }
     @Bean
     public CommandLineRunner runner(Helltaker helltaker) {
@@ -51,8 +51,13 @@ public class Main {
         return new ScoreServiceRestClient();
     }
     @Bean
-    public Helltaker helltaker(MusicPlayer musicPlayer, MainMenu mainMenu){
-        return new Helltaker(musicPlayer, mainMenu);
+    public UserService userService() {
+     //   return new UserServiceJPA();
+        return new UserServiceRestClient();
+    }
+    @Bean
+    public Helltaker helltaker(MusicPlayer musicPlayer, MainMenu mainMenu, UserService userService){
+        return new Helltaker(musicPlayer, mainMenu, userService);
     }
     @Bean
     public MainMenu mainMenu(RatingService ratingService, CommentService commentService, GameManager gameScene, @Lazy MusicPlayer musicPlayer, Display display, @Lazy Helltaker helltaker){

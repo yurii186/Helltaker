@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 import java.util.*;
 
-
 @Component
 public class GameManager {
     private int level = 0;
@@ -37,7 +36,6 @@ public class GameManager {
         this.mainMenu = mainMenu;
     }
 
-
     public void startGame() {
 
         GameplayProcessor gameplayProcessor = new GameplayProcessor(mainMenu, musicPlayer);
@@ -46,12 +44,6 @@ public class GameManager {
 
         //Helltaker.musicPlayer.startMusic(true);
         musicPlayer.startMusic(true);
-
-//        Score score = new Score(null, null, 0, null);
-//        score.setGame(Helltaker.game);
-//        //Helltaker helltaker = new Helltaker();
-//        score.setPlayer(helltaker.getName());
-//        score.setPlayedOn(new Date());
 
         int score = 0;
 

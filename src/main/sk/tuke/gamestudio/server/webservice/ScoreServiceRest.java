@@ -20,7 +20,7 @@ public class ScoreServiceRest {
         return scoreService.getTopScores(game);
     }
 
-    @PostMapping
+    @GetMapping
     public void addScore(@RequestBody Score score) {
         scoreService.addScore(score);
     }

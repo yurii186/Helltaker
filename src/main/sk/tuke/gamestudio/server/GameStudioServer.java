@@ -1,5 +1,6 @@
 package main.sk.tuke.gamestudio.server;
 
+import main.sk.tuke.gamestudio.game.helltaker.gamecore.GameplayProcessorWeb;
 import main.sk.tuke.gamestudio.service.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,7 +10,8 @@ import org.springframework.context.annotation.Configuration;
 
 @SpringBootApplication
 @Configuration
-@EntityScan("main.sk.tuke.gamestudio.entity")
+@EntityScan({"main.sk.tuke.gamestudio.entity", "main.sk.tuke.gamestudio.game"})
+//@ComponentScan("main.sk.tuke.gamestudio.game.helltaker.db")
 public class GameStudioServer {
     public static void main(String[] args) {
         SpringApplication.run(GameStudioServer.class, args);
@@ -27,4 +29,13 @@ public class GameStudioServer {
     public RatingService ratingService() {
         return new RatingServiceJPA();
     }
+    @Bean
+    public UserService userService() {
+        return new UserServiceJPA();
+    }
+    @Bean
+    public GameplayProcessorWeb gameplayProcessorWeb() {
+        return new GameplayProcessorWeb();
+    }
+
 }

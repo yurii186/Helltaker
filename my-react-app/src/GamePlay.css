@@ -1,0 +1,555 @@
+.game-container {
+    max-width: 800px; /* Максимальная ширина контейнера */
+    width: 100%; /* Используем всю доступную ширину */
+    height: 100vh; /* Используем всю высоту видимой области */
+    margin: 0 auto; /* Автоматические отступы для горизонтального центрирования */
+    display: flex;
+    flex-direction: column; /* Вертикальное расположение дочерних элементов */
+    justify-content: center; /* Центрирование содержимого по вертикали */
+    align-items: center; /* Центрирование содержимого по горизонтали */
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+.game-board {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.game-row {
+    display: flex;
+    justify-content: center;
+}
+
+.game-cell {
+    width: 100px; /* Размеры ячеек */
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: red;
+}
+
+.black-square {
+    background-color: #020317;
+}
+
+.red-square {
+    background-color: red;
+}
+.player-sprite {
+    width: 100px;
+    height: 100px;
+    background-image: url('sprites/Helltaker.png');
+    background-repeat: no-repeat;
+    background-size: 2500px 972px;
+    background-position: 0px -40px;
+    /*background-color: red;*/
+    transition: transform 0.2s ease-out;
+}
+
+.player.win{
+    animation: player-win 2s steps(25) infinite;
+}
+@keyframes player-win {
+    from { background-position: 0px -480px;}
+    to { background-position: -2499px -480px;}
+}
+@media (max-width: 600px) {
+    .player.win {
+        animation: player-win 2s steps(25) infinite;
+    }
+
+    @keyframes player-win {
+        from {
+            background-position: 0px -240px;
+        }
+        to {
+            background-position: -1100px -240px;
+        }
+    }
+}
+.idle-shake {
+    animation: idle-shake 1s steps(12) infinite;
+}
+
+@keyframes idle-shake {
+    from { background-position: 0px -40px; }
+    to { background-position: -1199px -40px; }
+}
+
+.player-right {
+    transform: scaleX(1)
+}
+
+.player-left {
+    transform: scaleX(-1);
+}
+
+@keyframes move-down-right {
+    from { transform: translateY(0); }
+    to { transform: translateY(100px); }
+}
+
+@keyframes move-down-left {
+    from { transform: translateY(0) scaleX(-1); }  /* Начало с текущей позиции, смотрит влево */
+    to { transform: translateY(100px) scaleX(-1); } /* Движение влево и по-прежнему смотрит влево */
+}
+
+@keyframes move-right {
+    from { transform: translateX(0); }
+    to { transform: translateX(100px); } /* Предположим, что движение вправо на 100px */
+}
+
+@keyframes move-left {
+    from { transform: translateX(0) scaleX(-1); }  /* Начало с текущей позиции, смотрит влево */
+    to { transform: translateX(-100px) scaleX(-1); } /* Движение влево и по-прежнему смотрит влево */
+}
+
+
+@keyframes move-up-right {
+    from { transform: translateY(0); }
+    to { transform: translateY(-100px); }
+}
+
+@keyframes move-up-left {
+    from { transform: translateY(0) scaleX(-1); }  /* Начало с текущей позиции, смотрит влево */
+    to { transform: translateY(-100px) scaleX(-1); } /* Движение влево и по-прежнему смотрит влево */
+}
+
+@keyframes walk {
+    from { background-position: -700px -260px; }
+    to { background-position: -1299px -260px; }
+}
+
+.moving.down.right {
+    animation: move-down-right 0.5s forwards, walk 0.5s steps(6) infinite;
+}
+.moving.down.left{
+    animation: move-down-left 0.5s forwards, walk 0.5s steps(6) infinite;
+}
+
+.moving.right {
+    animation: move-right 0.5s forwards, walk 0.5s steps(6) infinite;
+}
+
+.moving.left {
+    animation: move-left 0.5s forwards, walk 0.5s steps(6) infinite;
+}
+
+.moving.up.right {
+    animation: move-up-right 0.5s forwards, walk 0.5s steps(6) infinite;
+}
+
+.moving.up.left {
+    animation: move-up-left 0.5s forwards, walk 0.5s steps(6) infinite;
+}
+
+@keyframes punch {
+    from { background-position: -0px -260px; }
+    to { background-position: -699px -260px; }
+}
+
+.punch-right {
+    animation: punch 0.5s steps(7) infinite;
+}
+
+.punch-left {
+    animation: punch 0.5s steps(7) infinite;
+    transform: scaleX(-1);
+}
+
+/* Стили для мобильных устройств */
+/* Стили для экранов до 600px */
+/* Стили для экранов до 600px */
+@media (max-width: 600px) {
+
+    .game-cell {
+        width: 40px; /* Уменьшаем размер ячеек */
+        height: 60px;
+    }
+
+    .player-sprite {
+        width: 40px;
+        height: 60px;
+        background-size: 1100px 486px; /* Половина исходного размера спрайта */
+        background-position: -2px -10px; /* Половина исходного смещения */
+    }
+
+
+    @keyframes idle-shake {
+        from { background-position: -2px -15px; }
+        to { background-position: -530px -15px; }
+    }
+
+    /*@keyframes walk {*/
+    /*    from { background-position: -280px -130px; }*/
+    /*    to { background-position: -520px -130px; }*/
+    /*}*/
+    @keyframes walk {
+        from { background-position: -310px -125px; }
+        to { background-position: -570px -125px; }
+    }
+
+    .moving.down.right {
+        animation: move-down-right 0.5s forwards, walk 0.5s steps(6) infinite;
+    }
+    .moving.down.left {
+        animation: move-down-left 0.5s forwards, walk 0.5s steps(6) infinite;
+    }
+    .moving.right {
+        animation: move-right 0.5s forwards, walk 0.5s steps(6) infinite;
+    }
+    .moving.left {
+        animation: move-left 0.5s forwards, walk 0.5s steps(6) infinite;
+    }
+    .moving.up.right {
+        animation: move-up-right 0.5s forwards, walk 0.5s steps(6) infinite;
+    }
+    .moving.up.left {
+        animation: move-up-left 0.5s forwards, walk 0.5s steps(6) infinite;
+    }
+
+    /* Мобильная версия анимаций */
+    @keyframes move-down-right {
+        from { transform: translateY(0); }
+        to { transform: translateY(60px); }
+    }
+    @keyframes move-down-left {
+        from { transform: translateY(0) scaleX(-1); }
+        to { transform: translateY(60px) scaleX(-1); }
+    }
+    @keyframes move-right {
+        from { transform: translateX(0); }
+        to { transform: translateX(40px); }
+    }
+    @keyframes move-left {
+        from { transform: translateX(0) scaleX(-1); }
+        to { transform: translateX(-40px) scaleX(-1); }
+    }
+    @keyframes move-up-right {
+        from { transform: translateY(0); }
+        to { transform: translateY(-60px); }
+    }
+    @keyframes move-up-left {
+        from { transform: translateY(0) scaleX(-1); }
+        to { transform: translateY(-60px) scaleX(-1); }
+    }
+
+    @keyframes punch {
+        from { background-position: -2px -125px; }
+        to { background-position: -618px -125px; }
+    }
+
+}
+
+
+.rock-sprite {
+    /*background-color: red; !* Красный фон для плитки *!*/
+    width: 100px;
+    height: 100px;
+    background-image: url('sprites/rock.png'); /* Путь к вашему изображению */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover; /* Покрытие всей плитки изображением */
+
+}
+
+@keyframes move-left-rock {
+    0% {
+        transform: translateX(0); /* Начальное положение (без смещения по горизонтали) */
+    }
+    100% {
+        transform: translateX(-100px); /* Смещение вправо на 20 пикселей */
+    }
+}
+
+@keyframes move-down-rock {
+    0% {
+        transform: translateY(0); /* Начальное положение (без смещения по вертикали) */
+    }
+    100% {
+        transform: translateY(100px); /* Смещение вниз на 20 пикселей */
+    }
+}
+
+@keyframes move-right-rock {
+    0% {
+        transform: translateX(0); /* Начальное положение (без смещения по горизонтали) */
+    }
+    100% {
+        transform: translateX(100px); /* Смещение вправо на 20 пикселей */
+    }
+}
+
+@keyframes move-up-rock {
+    0% {
+        transform: translateY(0); /* Начальное положение (без смещения по вертикали) */
+    }
+    100% {
+        transform: translateY(-100px); /* Смещение вниз на 20 пикселей */
+    }
+}
+
+.moving.down.rock {
+    animation: move-down-rock 0.5s infinite;
+}
+
+.moving.right.rock {
+    animation: move-right-rock 0.5s infinite;
+}
+
+.moving.left.rock {
+    animation: move-left-rock 0.5s infinite;
+}
+
+.moving.up.rock {
+    animation: move-up-rock 0.5s infinite;
+}
+
+@media (max-width: 600px){
+
+    .rock-sprite {
+        /*background-color: red; !* Красный фон для плитки *!*/
+        width: 40px;
+        height: 60px;
+        background-image: url('sprites/rock.png'); /* Путь к вашему изображению */
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain; /* Покрытие всей плитки изображением */
+
+    }
+
+    @keyframes move-left-rock {
+        0% {
+            transform: translateX(0); /* Начальное положение (без смещения по горизонтали) */
+        }
+        100% {
+            transform: translateX(-40px); /* Смещение вправо на 20 пикселей */
+        }
+    }
+
+    @keyframes move-down-rock {
+        0% {
+            transform: translateY(0); /* Начальное положение (без смещения по вертикали) */
+        }
+        100% {
+            transform: translateY(60px); /* Смещение вниз на 20 пикселей */
+        }
+    }
+
+    @keyframes move-right-rock {
+        0% {
+            transform: translateX(0); /* Начальное положение (без смещения по горизонтали) */
+        }
+        100% {
+            transform: translateX(40px); /* Смещение вправо на 20 пикселей */
+        }
+    }
+
+    @keyframes move-up-rock {
+        0% {
+            transform: translateY(0); /* Начальное положение (без смещения по вертикали) */
+        }
+        100% {
+            transform: translateY(-60px); /* Смещение вниз на 20 пикселей */
+        }
+    }
+
+}
+
+.skull-sprite {
+    width: 100px;
+    height: 100px;
+    background-image: url('sprites/Skeleton.png');
+    background-repeat: no-repeat;
+    background-size: 1200px 440px;
+    background-position: 0px -40px;
+    /*background-color: red;*/
+    transition: transform 0.2s ease-out;
+}
+
+.idle-shake-skull {
+    animation: idle-shake-skull 1s steps(12) infinite;
+}
+
+@keyframes idle-shake-skull {
+    from { background-position: 0px -40px; }
+    to { background-position: -1200px -40px; }
+}
+
+
+@keyframes walk-skull {
+    from { background-position: 0px -260px; }
+    to { background-position: -599px -260px; }
+}
+
+
+@keyframes move-down-skull {
+    from { transform: translateY(0); }
+    to { transform: translateY(100px); }
+}
+
+@keyframes move-right-skull {
+    from { transform: translateX(0); }
+    to { transform: translateX(100px); } /* Предположим, что движение вправо на 100px */
+}
+
+@keyframes move-left-skull {
+    from { transform: translateX(0); }  /* Начало с текущей позиции, смотрит влево */
+    to { transform: translateX(-100px); } /* Движение влево и по-прежнему смотрит влево */
+}
+
+
+@keyframes move-up-skull {
+    from { transform: translateY(0); }
+    to { transform: translateY(-100px); }
+}
+
+.moving.down.skull {
+    animation: move-down-skull 0.5s forwards, walk-skull 0.5s steps(6) infinite;
+}
+
+.moving.right.skull {
+    animation: move-right-skull 0.5s forwards, walk-skull 0.5s steps(6) infinite;
+}
+
+.moving.left.skull {
+    animation: move-left-skull 0.5s forwards, walk-skull 0.5s steps(6) infinite;
+}
+
+.moving.up.skull {
+    animation: move-up-skull 0.5s forwards, walk-skull 0.5s steps(6) infinite;
+}
+
+@media (max-width: 600px) {
+
+    .skull-sprite {
+        width: 40px;
+        height: 60px;
+        background-size: 600px 200px; /* Половина исходного размера спрайта */
+        background-position: 0px -12px; /* Половина исходного смещения */
+    }
+
+    @keyframes idle-shake-skull {
+        from { background-position: -5px -12px; }
+        to { background-position: -605px -12px; }
+    }
+
+
+    @keyframes walk-skull {
+        from { background-position: -5px -115px; }
+        to { background-position: -305px -115px; }
+    }
+
+    @keyframes move-down-skull {
+        from { transform: translateY(0); }
+        to { transform: translateY(60px); }
+    }
+
+    @keyframes move-right-skull {
+        from { transform: translateX(0); }
+        to { transform: translateX(40px); } /* Предположим, что движение вправо на 100px */
+    }
+
+    @keyframes move-left-skull {
+        from { transform: translateX(0); }  /* Начало с текущей позиции, смотрит влево */
+        to { transform: translateX(-40px); } /* Движение влево и по-прежнему смотрит влево */
+    }
+
+
+    @keyframes move-up-skull {
+        from { transform: translateY(0); }
+        to { transform: translateY(-60px); }
+    }
+
+    .moving.down.skull {
+        animation: move-down-skull 0.5s forwards, walk-skull 0.5s steps(6) infinite;
+    }
+
+    .moving.right.skull {
+        animation: move-right-skull 0.5s forwards, walk-skull 0.5s steps(6) infinite;
+    }
+
+    .moving.left.skull {
+        animation: move-left-skull 0.5s forwards, walk-skull 0.5s steps(6) infinite;
+    }
+
+    .moving.up.skull {
+        animation: move-up-skull 0.5s forwards, walk-skull 0.5s steps(6) infinite;
+    }
+
+}
+
+
+.heart-sprite {
+    width: 100px;
+    height: 100px;
+    background-repeat: no-repeat;
+    background-size: 1200px 100px;
+    background-position: 0px;
+    /*background-color: red;*/
+    transition: transform 0.2s ease-out;
+}
+
+/* Примеры анимаций idle для разных уровней */
+.idle-level-0 {
+    background-image: url('sprites/Pandemonica.png');
+    animation: idle-level-0 1s steps(12) infinite;
+}
+@keyframes idle-level-0 {
+    from { background-position: 0px -10px; }
+    to { background-position: -1200px -10px; }
+}
+
+@media (max-width: 600px) {
+
+    .heart-sprite {
+        width: 40px;
+        height: 60px;
+        background-size: 600px 50px; /* Половина исходного размера спрайта */
+        background-position: -6px; /* Половина исходного смещения */
+    }
+
+    @keyframes idle-level-0 {
+        from { background-position: -6px -1px; }
+        to { background-position: -606px -1px; }
+    }
+}
+
+.spike-sprite{
+    width: 100px;
+    height: 100px;
+    background-image: url("spikeImage/test.png");
+}
+
+@media (max-width: 600px) {
+    .spike-sprite{
+        width: 40px;
+        height: 60px;
+        background-image: url("spikeImageMedia/test.png");
+    }
+}
+
+.spike-and-rock-sprite {
+    width: 100px;  /* Укажите необходимую ширину */
+    height: 100px; /* Укажите необходимую высоту */
+    background-image: url('spikeImage/test.png'), url('sprites/rock.png');
+    background-position: center, center; /* Центрирует оба изображения в контейнере */
+    background-size: cover, contain; /* Масштабирует первое изображение чтобы покрыть всю область, второе - чтобы поместиться полностью */
+    background-repeat: no-repeat; /* Убирает повторение для обоих изображений */
+}
+
+@media (max-width: 600px) {
+    .spike-and-rock-sprite {
+        width: 40px; /* Укажите необходимую ширину */
+        height: 60px; /* Укажите необходимую высоту */
+        background-image: url('spikeImageMedia/test.png'), url('sprites/rock.png');
+        background-position: center, center; /* Центрирует оба изображения в контейнере */
+        background-size: cover, contain; /* Масштабирует первое изображение чтобы покрыть всю область, второе - чтобы поместиться полностью */
+        background-repeat: no-repeat; /* Убирает повторение для обоих изображений */
+    }
+}

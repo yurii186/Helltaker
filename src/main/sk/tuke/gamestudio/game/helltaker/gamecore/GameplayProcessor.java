@@ -476,7 +476,6 @@ public class GameplayProcessor extends Level {
             if (checkEnd(gameBoard)) {
                 break;
             }
-
             observer.onStepsUpdated(steps);
 
             String input;
