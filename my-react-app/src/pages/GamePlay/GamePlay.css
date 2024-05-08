@@ -43,12 +43,12 @@
 .player-sprite {
     width: 100px;
     height: 100px;
-    background-image: url('sprites/Helltaker.png');
+    background-image: url('../../assets/sprites/Helltaker.png');
     background-repeat: no-repeat;
     background-size: 2500px 972px;
     background-position: 0px -40px;
     /*background-color: red;*/
-    transition: transform 0.2s ease-out;
+    /*transition: transform 0.2s ease-out;*/
 }
 
 .player.win{
@@ -125,6 +125,23 @@
     to { background-position: -1299px -260px; }
 }
 
+.moving.cant.up-down.left{
+    animation: walk 0.5s steps(6) infinite;
+    transform: scaleX(-1);
+}
+
+.moving.cant.up-down.right{
+    animation: walk 0.5s steps(6) infinite;
+}
+
+.moving.cant.left{
+    animation: walk 0.5s steps(6) infinite;
+    transform: scaleX(-1);
+}
+.moving.cant.right{
+    animation: walk 0.5s steps(6) infinite;
+}
+
 .moving.down.right {
     animation: move-down-right 0.5s forwards, walk 0.5s steps(6) infinite;
 }
@@ -185,10 +202,7 @@
         to { background-position: -530px -15px; }
     }
 
-    /*@keyframes walk {*/
-    /*    from { background-position: -280px -130px; }*/
-    /*    to { background-position: -520px -130px; }*/
-    /*}*/
+
     @keyframes walk {
         from { background-position: -310px -125px; }
         to { background-position: -570px -125px; }
@@ -251,7 +265,7 @@
     /*background-color: red; !* Красный фон для плитки *!*/
     width: 100px;
     height: 100px;
-    background-image: url('sprites/rock.png'); /* Путь к вашему изображению */
+    background-image: url('../../assets/sprites/rock.png'); /* Путь к вашему изображению */
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover; /* Покрытие всей плитки изображением */
@@ -316,7 +330,7 @@
         /*background-color: red; !* Красный фон для плитки *!*/
         width: 40px;
         height: 60px;
-        background-image: url('sprites/rock.png'); /* Путь к вашему изображению */
+        background-image: url('../../assets/sprites/rock.png'); /* Путь к вашему изображению */
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain; /* Покрытие всей плитки изображением */
@@ -364,12 +378,13 @@
 .skull-sprite {
     width: 100px;
     height: 100px;
-    background-image: url('sprites/Skeleton.png');
+    background-image: url('../../assets/sprites/Skeleton.png');
     background-repeat: no-repeat;
     background-size: 1200px 440px;
     background-position: 0px -40px;
+    position: absolute;
     /*background-color: red;*/
-    transition: transform 0.2s ease-out;
+    /*transition: transform 0.2s ease-out;*/
 }
 
 .idle-shake-skull {
@@ -484,7 +499,6 @@
 
 }
 
-
 .heart-sprite {
     width: 100px;
     height: 100px;
@@ -492,17 +506,65 @@
     background-size: 1200px 100px;
     background-position: 0px;
     /*background-color: red;*/
-    transition: transform 0.2s ease-out;
+    /*transition: transform 0.2s ease-out;*/
+}
+
+.heart-sprite7 {
+    width: 100px;
+    height: 100px;
+    background-repeat: no-repeat;
+    background-size: 1200px 200px;
+    background-position: 0px;
+    /*background-color: red;*/
+    /*transition: transform 0.2s ease-out;*/
+}
+
+@keyframes idle-level-0 {
+    from { background-position: 0px -10px; }
+    to { background-position: -1200px -10px; }
+}
+
+@keyframes idle-level-7 {
+    from { background-position: 0px -1px; }
+    to { background-position: -1200px -1px; }
 }
 
 /* Примеры анимаций idle для разных уровней */
 .idle-level-0 {
-    background-image: url('sprites/Pandemonica.png');
+    background-image: url('../../assets/sprites/Pandemonica.png');
     animation: idle-level-0 1s steps(12) infinite;
 }
-@keyframes idle-level-0 {
-    from { background-position: 0px -10px; }
-    to { background-position: -1200px -10px; }
+
+.idle-level-1 {
+    background-image: url('../../assets/sprites/Modeus.png');
+    animation: idle-level-0 1s steps(12) infinite;
+}
+
+.idle-level-2 {
+    background-image: url('../../assets/sprites/Cerberus.png');
+    animation: idle-level-0 1s steps(12) infinite;
+}
+
+.idle-level-3 {
+    background-image: url('../../assets/sprites/Malina.png');
+    animation: idle-level-0 1s steps(12) infinite;
+}
+
+.idle-level-4 {
+    background-image: url('../../assets/sprites/Zdrada.png');
+    animation: idle-level-0 1s steps(12) infinite;
+}
+.idle-level-5 {
+    background-image: url('../../assets/sprites/Azazel.png');
+    animation: idle-level-0 1s steps(12) infinite;
+}
+.idle-level-6{
+    background-image: url('../../assets/sprites/Justice.png');
+    animation: idle-level-0 1s steps(12) infinite;
+}
+.idle-level-7{
+    background-image: url('../../assets/sprites/Lucifer.png');
+    animation: idle-level-7 1s steps(12) infinite;
 }
 
 @media (max-width: 600px) {
@@ -514,42 +576,336 @@
         background-position: -6px; /* Половина исходного смещения */
     }
 
+    .heart-sprite7 {
+        width: 40px;
+        height: 60px;
+        background-repeat: no-repeat;
+        background-size: 600px 100px;
+        background-position: -6px;
+    }
+
     @keyframes idle-level-0 {
         from { background-position: -6px -1px; }
         to { background-position: -606px -1px; }
     }
+
+    @keyframes idle-level-7 {
+        from { background-position: -6px 8px; }
+        to { background-position: -606px 8px; }
+    }
+
 }
+
+
+@keyframes closeSpike {
+    0% { background-image: url('../../assets/sprites/spikeImage/frame_0_delay-0.06s.png'); }
+    25% { background-image: url('../../assets/sprites/spikeImage/frame_1_delay-0.06s.png'); }
+    50% { background-image: url('../../assets/sprites/spikeImage/frame_2_delay-0.06s.png'); }
+    75% { background-image: url('../../assets/sprites/spikeImage/frame_3_delay-0.06s.png'); }
+    100% { background-image: url('../../assets/sprites/spikeImage/frame_4_delay-0.06s.png'); }
+}
+
+@keyframes openSpike {
+    0% { background-image: url('../../assets/sprites/spikeImage/frame_4_delay-0.06s.png'); }
+    25% { background-image: url('../../assets/sprites/spikeImage/frame_5_delay-0.06s.png'); }
+    50% { background-image: url('../../assets/sprites/spikeImage/frame_6_delay-0.06s.png'); }
+    75% { background-image: url('../../assets/sprites/spikeImage/frame_7_delay-0.06s.png'); }
+    100% { background-image: url('../../assets/sprites/spikeImage/frame_8_delay-0.06s.png'); }
+}
+
+.spike-close {
+    animation: closeSpike 0.5s forwards;
+}
+
+.spike-open {
+    animation: openSpike 0.5s forwards;
+}
+
+.spike-static-open{
+    background-image: url("../../assets/sprites/spikeImage/frame_0_delay-0.06s.png");
+}
+.spike-static-close{
+    background-image: url("../../assets/sprites/spikeImage/frame_4_delay-0.06s.png");
+}
+
+@media (max-width: 600px) {
+
+    @keyframes closeSpike {
+        0% { background-image: url('../../assets/sprites/spikeImageMedia/frame_0_delay-0.06s.png'); }
+        25% { background-image: url('../../assets/sprites/spikeImageMedia/frame_1_delay-0.06s.png'); }
+        50% { background-image: url('../../assets/sprites/spikeImageMedia/frame_2_delay-0.06s.png'); }
+        75% { background-image: url('../../assets/sprites/spikeImageMedia/frame_3_delay-0.06s.png'); }
+        100% { background-image: url('../../assets/sprites/spikeImageMedia/frame_4_delay-0.06s.png'); }
+    }
+
+    @keyframes openSpike {
+        0% { background-image: url('../../assets/sprites/spikeImageMedia/frame_4_delay-0.06s.png'); }
+        25% { background-image: url('../../assets/sprites/spikeImageMedia/frame_5_delay-0.06s.png'); }
+        50% { background-image: url('../../assets/sprites/spikeImageMedia/frame_6_delay-0.06s.png'); }
+        75% { background-image: url('../../assets/sprites/spikeImageMedia/frame_7_delay-0.06s.png'); }
+        100% { background-image: url('../../assets/sprites/spikeImageMedia/frame_8_delay-0.06s.png'); }
+    }
+
+    .spike-static-open{
+        background-image: url("../../assets/sprites/spikeImageMedia/frame_0_delay-0.06s.png");
+    }
+    .spike-static-close{
+        background-image: url("../../assets/sprites/spikeImageMedia/frame_4_delay-0.06s.png");
+    }
+}
+
 
 .spike-sprite{
     width: 100px;
     height: 100px;
-    background-image: url("spikeImage/test.png");
 }
 
 @media (max-width: 600px) {
     .spike-sprite{
         width: 40px;
         height: 60px;
-        background-image: url("spikeImageMedia/test.png");
+        background-image: url("../../assets/sprites/spikeImageMedia/frame_0_delay-0.06s.png");
     }
 }
 
+
 .spike-and-rock-sprite {
-    width: 100px;  /* Укажите необходимую ширину */
-    height: 100px; /* Укажите необходимую высоту */
-    background-image: url('spikeImage/test.png'), url('sprites/rock.png');
-    background-position: center, center; /* Центрирует оба изображения в контейнере */
-    background-size: cover, contain; /* Масштабирует первое изображение чтобы покрыть всю область, второе - чтобы поместиться полностью */
-    background-repeat: no-repeat; /* Убирает повторение для обоих изображений */
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
+
+.spike-and-rock-sprite::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../assets/sprites/rock.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.animate-rock-up::after {
+    animation: rockMoveUp 500ms infinite;
+}
+
+.animate-rock-down::after {
+    animation: rockMoveDown 500ms infinite;
+}
+
+.animate-rock-left::after {
+    animation: rockMoveLeft 500ms infinite;
+}
+
+.animate-rock-right::after {
+    animation: rockMoveRight 500ms infinite;
+}
+
+@keyframes rockMoveUp {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-100px); }
+}
+
+@keyframes rockMoveDown {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(100px); }
+}
+
+@keyframes rockMoveLeft {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100px); }
+}
+
+@keyframes rockMoveRight {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(100px); }
+}
+
+
 
 @media (max-width: 600px) {
     .spike-and-rock-sprite {
         width: 40px; /* Укажите необходимую ширину */
         height: 60px; /* Укажите необходимую высоту */
-        background-image: url('spikeImageMedia/test.png'), url('sprites/rock.png');
+        background-image: url('../../assets/sprites/spikeImageMedia/frame_0_delay-0.06s.png'), url('../../assets/sprites/rock.png');
         background-position: center, center; /* Центрирует оба изображения в контейнере */
         background-size: cover, contain; /* Масштабирует первое изображение чтобы покрыть всю область, второе - чтобы поместиться полностью */
         background-repeat: no-repeat; /* Убирает повторение для обоих изображений */
+    }
+
+
+    @keyframes rockMoveUp {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-40px); }
+    }
+
+    @keyframes rockMoveDown {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(40px); }
+    }
+
+    @keyframes rockMoveLeft {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-60px); }
+    }
+
+    @keyframes rockMoveRight {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(60px); }
+    }
+
+}
+
+.chest-sprite{
+    width: 100px;
+    height: 100px;
+    background-position: center;
+    background-size: cover;
+    background-image: url("../../assets/sprites/chest.jpg");
+}
+
+@keyframes slideshow {
+    0% { background-image: url('../../assets/sprites/key/1-key.jpg'); }
+    9.09% { background-image: url('../../assets/sprites/key/2-key.jpg'); }
+    18.18% { background-image: url('../../assets/sprites/key/3-key.jpg'); }
+    27.27% { background-image: url('../../assets/sprites/key/4-key.jpg'); }
+    36.36% { background-image: url('../../assets/sprites/key/5-key.jpg'); }
+    45.45% { background-image: url('../../assets/sprites/key/6-key.jpg'); }
+    54.54% { background-image: url('../../assets/sprites/key/7-key.jpg'); }
+    63.63% { background-image: url('../../assets/sprites/key/8-key.jpg'); }
+    72.72% { background-image: url('../../assets/sprites/key/9-key.jpg'); }
+    81.81% { background-image: url('../../assets/sprites/key/10-key.jpg'); }
+    90.90% { background-image: url('../../assets/sprites/key/11-key.jpg'); }
+    100% { background-image: url('../../assets/sprites/key/1-key.jpg'); } /* Повтор первого изображения для плавности */
+}
+
+.key {
+    width: 100%; /* Установите нужные размеры */
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    animation: slideshow 1s infinite linear;
+}
+
+@media (max-width: 600px) {
+    .key{
+        width: 60%;
+        height: 80%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+
+    .chest-sprite{
+        width: 40px;
+        height: 60px;
+        background-position: center;
+        background-size: cover;
+        background-image: url("../../assets/sprites/chest.jpg");
+    }
+}
+
+/* GamePlay.css */
+.game-container-score {
+    text-align: center;
+    background-color: #282c34;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px auto;
+    width: 80%;
+    position: relative;
+}
+
+.top-players ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.top-players li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.top-players li:last-child {
+    border-bottom: none;
+}
+
+.rating-display {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #FFD700; /* Gold color */
+}
+
+.menu-button, .exit-button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.menu-button:hover, .exit-button:hover {
+    background-color: #0056b3;
+}
+
+.exit-button {
+    background-color: #dc3545;
+}
+
+.exit-button:hover {
+    background-color: #c82333;
+}
+
+/* GamePlay.css */
+.gif-container {
+    position: fixed; /* Используем fixed для позиционирования относительно вьюпорта */
+    top: 0;
+    bottom: 0;
+    width: 39%; /* Устанавливаем ширину гиф-контейнеров в 30% */
+    height: 100vh; /* Высота вьюпорта */
+    display: flex;
+    align-items: center; /* Центрирование по вертикали */
+    background-size: cover; /* Покрытие всей области контейнера */
+    background-position: center; /* Центрирование изображения */
+}
+
+.gif-container.left {
+    left: 0; /* Расположение слева */
+    background-image: url('../../assets/image/finish.webp'); /* Путь к левому гиф-изображению */
+}
+
+.gif-container.right {
+    right: 0; /* Расположение справа */
+    background-image: url('../../assets/image/finish.webp'); /* Путь к правому гиф-изображению */
+}
+
+
+.gif-image {
+    width: 100px;
+    height: auto;
+}
+
+/* Основные стили, которые применяются для всех устройств, уже добавлены выше */
+
+/* Стили для мобильных устройств */
+@media (max-width: 600px) {
+    .gif-container {
+        display: none; /* Скрытие гиф-контейнеров на устройствах с шириной экрана меньше 768px */
+    }
+
+    /* Можно также изменить ширину основного контейнера, чтобы он занимал больше места, поскольку гифки скрыты */
+    .game-container-score {
+        width: 95%; /* Увеличиваем ширину, так как нет гиф-контейнеров по бокам */
     }
 }

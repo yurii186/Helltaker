@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './Menu.css';
-import GamePlay from "./GamePlay";
+import GamePlay from "../GamePlay/GamePlay";
 
 function MainMenu({ onLoginMenuSelect, namePlayer }) {
     // Состояния и методы, которые уже были в вашем компоненте...
@@ -16,6 +16,32 @@ function MainMenu({ onLoginMenuSelect, namePlayer }) {
     const menuOptions = ['NEW GAME', 'CHAPTER SELECT', 'REVIEWS', 'LOGIN MENU'];
     const [chapterLevel , setChapterLevel] = useState(0);
 
+
+    const returnMain = () => {
+        setCurrentOption(0);
+        setStartGame(false);
+        setComments([]);
+        setLoading(false);
+        setShowComments(false);
+        setShowCommentForm(false);
+        setNewComment('');
+        setShowChapterSelect(false);
+        setChapterLevel(0);
+    };
+
+    const Exit = () => {
+        setCurrentOption(0);
+        setStartGame(false);
+        setComments([]);
+        setLoading(false);
+        setShowComments(false);
+        setShowCommentForm(false);
+        setNewComment('');
+        setAverageRating(0);
+        setShowChapterSelect(false);
+        setChapterLevel(0);
+        onLoginMenuSelect();
+    };
 
     useEffect(() => {
         console.log("LEVEL = ", chapterLevel);
@@ -174,7 +200,7 @@ function MainMenu({ onLoginMenuSelect, namePlayer }) {
     return (
         <div className="main-container">
             {startGame ? (
-                <GamePlay chapterLevel={chapterLevel}/>
+                <GamePlay chapterLevel={chapterLevel} returnMain={returnMain} Exit={Exit} namePlayer={namePlayer}/>
             ) : showChapterSelect ? (
                 <div className="chapter-select-container">
                     <div className="sides-image-left"></div>  // Проверь названия классов, чтобы они соответствовали CSS

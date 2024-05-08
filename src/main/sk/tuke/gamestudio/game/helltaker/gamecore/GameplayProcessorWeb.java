@@ -3,12 +3,10 @@ package main.sk.tuke.gamestudio.game.helltaker.gamecore;
 
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 @Service
-public class GameplayProcessorWeb extends Level {
+public class GameplayProcessorWeb extends LevelWeb {
 
 
     private String[][] gameBoard;
@@ -76,6 +74,13 @@ public class GameplayProcessorWeb extends Level {
     public synchronized int move(int steps, String input) {
         // Scanner scanner = new Scanner(System.in);
         loadGameState();
+        System.out.println("To");
+        for (String[] row : gameBoard) {
+            for (String cell : row) {
+                System.out.print(cell + " ");
+            }
+            System.out.println();
+        }
         hideSpike = getHideSpike();
         if (hideSpike)
             ChangeSpike();
@@ -95,9 +100,9 @@ public class GameplayProcessorWeb extends Level {
         int index = 1;
 
         //     String input = scanner.nextLine();
-
         switch (input) {
             case "w":
+                setAnimation(-32);
                 if (x != 0 && gameBoard[x - 1][y].equals(".")) {
                     Spike(x, y, x - 1, y);
                     setAnimation(-4);
@@ -105,7 +110,7 @@ public class GameplayProcessorWeb extends Level {
                     index = index + PushBox(x, y, x - 1, y, x - 2, y);
                 } else if (x != 0 && gameBoard[x - 1][y].equals("☠")) {
 
-                    if (x - 2 == -1 || gameBoard[x - 2][y] == null || gameBoard[x - 2][y].equals("□") || gameBoard[x - 2][y].equals("☰") || gameBoard[x - 2][y].equals("■")) {
+                    if (x - 2 == -1 || gameBoard[x - 2][y] == null || gameBoard[x - 2][y].equals("□") || gameBoard[x - 2][y].equals("☰") || gameBoard[x - 2][y].equals("■") || gameBoard[x - 2][y].equals("☠")) {
                         gameBoard[x - 1][y] = ".";
                     } else if (gameBoard[x - 2][y].equals(".")) {
                         String enemy = gameBoard[x - 1][y];
@@ -121,8 +126,9 @@ public class GameplayProcessorWeb extends Level {
                         index = index + displayAndUpdateSpike(x, y);
                     else
                         setMap(gameBoard);
-                    if(!gameBoard[x - 2][y].equals("■"))
+                    if(x - 2 == -1 || !gameBoard[x - 2][y].equals("■")) {
                         setAnimation(-8);
+                    }
                 } else if (x != 0 && (gameBoard[x - 1][y].equals("☰") || gameBoard[x - 1][y].equals("_"))) {
                     index = index + StepSpikeX(x, y, x - 1);
                 } else if (x != 0 && gameBoard[x - 1][y].equals("☒")) {
@@ -138,6 +144,7 @@ public class GameplayProcessorWeb extends Level {
                 }
                 break;
             case "s":
+                setAnimation(-31);
                 if (x != gameBoard.length && x != gameBoard.length - 1 && gameBoard[x + 1][y].equals(".")) {
                     Spike(x, y, x + 1, y);
                     setAnimation(-3);
@@ -147,7 +154,7 @@ public class GameplayProcessorWeb extends Level {
                 else if (x != gameBoard.length && x != (gameBoard.length - 1) && x + 2 != gameBoard.length && (gameBoard[x + 1][y].equals("■") || gameBoard[x + 1][y].equals("◙") || gameBoard[x + 1][y].equals("◘") || gameBoard[x + 1][y].equals("▢"))) {
                     index = index + PushBox(x, y, x + 1, y, x + 2, y);
                 } else if (x != gameBoard.length && x != (gameBoard.length - 1) && gameBoard[x + 1][y].equals("☠")) {
-                    if (x + 2 == gameBoard.length || gameBoard[x + 2][y] == null || gameBoard[x + 2][y].equals("□") || gameBoard[x + 2][y].equals("☰") || gameBoard[x + 2][y].equals("■")) {
+                    if (x + 2 == gameBoard.length || gameBoard[x + 2][y] == null || gameBoard[x + 2][y].equals("□") || gameBoard[x + 2][y].equals("☰") || gameBoard[x + 2][y].equals("■") || gameBoard[x + 2][y].equals("☠")) {
                         gameBoard[x + 1][y] = ".";
                     } else if (x + 2 != gameBoard.length && gameBoard[x + 2][y].equals(".")) {
                         String enemy = gameBoard[x + 1][y];
@@ -181,6 +188,7 @@ public class GameplayProcessorWeb extends Level {
                 //     System.out.println("X = " + x + "Y = " + y);
                 break;
             case "a":
+                setAnimation(-29);
                 if (y != 0 && gameBoard[x][y - 1].equals(".")) {
                     Spike(x, y, x, y - 1);
                     setAnimation(-1);
@@ -190,7 +198,7 @@ public class GameplayProcessorWeb extends Level {
                 } else if (y != 1 && y != 0 && gameBoard[x][y - 1].equals("☠")) {
                     String enemy = gameBoard[x][y - 1];
                     String array = gameBoard[x][y - 2];
-                    if (gameBoard[x][y - 2] == null || gameBoard[x][y - 2].equals("□") || gameBoard[x][y - 2].equals("☰") || gameBoard[x][y - 2].equals("■")) {
+                    if (gameBoard[x][y - 2] == null || gameBoard[x][y - 2].equals("□") || gameBoard[x][y - 2].equals("☰") || gameBoard[x][y - 2].equals("■") || gameBoard[x][y - 2].equals("☠")) {
                         gameBoard[x][y - 1] = ".";
                     } else if (gameBoard[x][y - 2].equals(".")) {
                         gameBoard[x][y - 2] = enemy;
@@ -221,6 +229,7 @@ public class GameplayProcessorWeb extends Level {
                 // x--;
                 break;
             case "d":
+                setAnimation(-30);
                 if (y != gameBoard[0].length && y != (gameBoard[0].length - 1) && gameBoard[x][y + 1].equals(".")) {
                     Spike(x, y, x, y + 1);
                     setAnimation(-2);
@@ -228,7 +237,7 @@ public class GameplayProcessorWeb extends Level {
                     index = index + PushBox(x, y, x, y + 1, x, y + 2);
                 } else if (y != gameBoard[0].length && y != (gameBoard[0].length - 1) && gameBoard[x][y + 1].equals("☠")) {
 
-                    if (y + 2 != gameBoard[0].length && gameBoard[x][y + 2] == null || gameBoard[x][y + 2].equals("□") || gameBoard[x][y + 2].equals("☰") || gameBoard[x][y + 2].equals("■")) {
+                    if (y + 2 != gameBoard[0].length && gameBoard[x][y + 2] == null || gameBoard[x][y + 2].equals("□") || gameBoard[x][y + 2].equals("☰") || gameBoard[x][y + 2].equals("■") || gameBoard[x][y + 2].equals("☠")) {
                         gameBoard[x][y + 1] = ".";
                     } else if (gameBoard[x][y + 2].equals(".")) {
                         String enemy = gameBoard[x][y + 1];
@@ -276,13 +285,14 @@ public class GameplayProcessorWeb extends Level {
                 // x++;
                 break;
             case "r":
-                return -1;
+                return -34;
             case "q":
-                return -2;
+                return -35;
             case "n":
-                return -3;
+                setAnimation(-33);
+                return -33;
             case "e":
-                return -5;
+                return -36;
             default:
                 if (hideSpike)
                     ChangeSpike();
@@ -362,6 +372,14 @@ public class GameplayProcessorWeb extends Level {
     private int stepSpike(int x, int y, int newX, int newY, int axis) {
         String spike = gameBoard[newX][newY];
         String hero;
+        if(y > newY)
+            setAnimation(-1);
+        else if(y < newY)
+            setAnimation(-2);
+        else if(x < newX)
+            setAnimation(-3);
+        else if(x > newX)
+            setAnimation(-4);
         if (!gameBoard[x][y].equals("☰") && !gameBoard[x][y].equals("_")) {
             hero = gameBoard[x][y];
             if (axis == 1) {
@@ -373,22 +391,7 @@ public class GameplayProcessorWeb extends Level {
             }
             gameBoard[x][y] = ".";
        //     display(gameBoard);
-            System.out.println("To chto otpravil");
-            for (String[] row : gameBoard) {
-                for (String cell : row) {
-                    System.out.print(cell + " ");
-                }
-                System.out.println();
-            }
             setMap(gameBoard);
-            System.out.println("To chto zapisalo");
-            String[][] test = getMap();
-            for (String[] row : test) {
-                for (String cell : row) {
-                    System.out.print(cell + " ");
-                }
-                System.out.println();
-            }
         } else {
             hero = "♀";
             if (axis == 1) {
@@ -424,17 +427,43 @@ public class GameplayProcessorWeb extends Level {
 
     private void KeyLock(int x, int y, int x1, int y1) {
         if (key) {
+            if(y > y1)
+                setAnimation(-1);
+            else if(y < y1)
+                setAnimation(-2);
+            else if(x < x1)
+                setAnimation(-3);
+            else if(x > x1)
+                setAnimation(-4);
             String hero = gameBoard[x][y];
             String array = ".";
             gameBoard[x1][y1] = hero;
             gameBoard[x][y] = array;
             key = false;
         }
+        else {
+            if (y > y1)
+                setAnimation(-17);
+            else if (y < y1)
+                setAnimation(-18);
+            else if (x < x1)
+                setAnimation(-19);
+            else if (x > x1)
+                setAnimation(-20);
+        }
       //  display(gameBoard);
         setMap(gameBoard);
     }
 
     private void Key(int x, int y, int x1, int y1) {
+        if(y > y1)
+            setAnimation(-1);
+        else if(y < y1)
+            setAnimation(-2);
+        else if(x < x1)
+            setAnimation(-3);
+        else if(x > x1)
+            setAnimation(-4);
         if (gameBoard[x][y].equals("☰") || gameBoard[x][y].equals("_")) {
             gameBoard[x1][y1] = "♀";
         } else {
@@ -449,6 +478,14 @@ public class GameplayProcessorWeb extends Level {
     }
 
     private int PushBox(int x, int y, int x1, int y1, int x2, int y2) {
+        if(y > y1)
+            setAnimation(-17);
+        else if(y < y1)
+            setAnimation(-18);
+        else if(x < x1)
+            setAnimation(-19);
+        else if(x > x1)
+            setAnimation(-20);
         if (!gameBoard[x][y].equals("☰") && !gameBoard[x][y].equals("_")) {
             String box = gameBoard[x1][y1];
             String array = gameBoard[x2][y2];
@@ -461,10 +498,18 @@ public class GameplayProcessorWeb extends Level {
                     else if(x < x1)
                         setAnimation(-15);
                     else if(x > x1)
-                        setAnimation(- 16);
+                        setAnimation(-16);
 
                     switch (gameBoard[x1][y1]) {
                         case "◙":
+                            if(y > y1)
+                                setAnimation(-21);
+                            else if(y < y1)
+                                setAnimation(-22);
+                            else if(x < x1)
+                                setAnimation(-23);
+                            else if(x > x1)
+                                setAnimation(-24);
                             gameBoard[x2][y2] = "■";
                             gameBoard[x1][y1] = "☰";
                             break;
@@ -483,13 +528,38 @@ public class GameplayProcessorWeb extends Level {
                     }
                     break;
                 case "☰":
-                    if (gameBoard[x1][y1].equals("◙"))
+                    if(y > y1)
+                        setAnimation(-13);
+                    else if(y < y1)
+                        setAnimation(-14);
+                    else if(x < x1)
+                        setAnimation(-15);
+                    else if(x > x1)
+                        setAnimation(-16);
+                    if (gameBoard[x1][y1].equals("◙")) {
+                        if(y > y1)
+                            setAnimation(-21);
+                        else if(y < y1)
+                            setAnimation(-22);
+                        else if(x < x1)
+                            setAnimation(-23);
+                        else if(x > x1)
+                            setAnimation(-24);
                         gameBoard[x1][y1] = array;
+                    }
                     else
                         gameBoard[x1][y1] = ".";
                     gameBoard[x2][y2] = "◙";
                     break;
                 case "_":
+                    if(y > y1)
+                        setAnimation(-21);
+                    else if(y < y1)
+                        setAnimation(-22);
+                    else if(x < x1)
+                        setAnimation(-23);
+                    else if(x > x1)
+                        setAnimation(-24);
                     if (gameBoard[x1][y1].equals("◘"))
                         gameBoard[x1][y1] = array;
                     else
@@ -514,9 +584,25 @@ public class GameplayProcessorWeb extends Level {
             //     if (gameBoard[x + 2][y].equals(".")) {
             if (gameBoard[x1][y1].equals("◙")) {
                 if (gameBoard[x2][y2].equals(spikeOrHideSpike)) {
+                    if(y > y1)
+                        setAnimation(-21);
+                    else if(y < y1)
+                        setAnimation(-22);
+                    else if(x < x1)
+                        setAnimation(-23);
+                    else if(x > x1)
+                        setAnimation(-24);
                     gameBoard[x1][y1] = spikeOrHideSpike;
                     gameBoard[x2][y2] = box;
                 } else if (gameBoard[x2][y2].equals(".")) {
+                    if(y > y1)
+                        setAnimation(-21);
+                    else if(y < y1)
+                        setAnimation(-22);
+                    else if(x < x1)
+                        setAnimation(-23);
+                    else if(x > x1)
+                        setAnimation(-24);
                     gameBoard[x2][y2] = "■";
                     gameBoard[x1][y1] = spikeOrHideSpike;
                 }
@@ -530,12 +616,28 @@ public class GameplayProcessorWeb extends Level {
                 }
             } else {
                 if (gameBoard[x2][y2].equals(spikeOrHideSpike)) {
+                    if(y > y1)
+                        setAnimation(-13);
+                    else if(y < y1)
+                        setAnimation(-14);
+                    else if(x < x1)
+                        setAnimation(-15);
+                    else if(x > x1)
+                        setAnimation(-16);
                     if (spikeOrHideSpike.equals("_"))
                         gameBoard[x2][y2] = "◘";
                     else
                         gameBoard[x2][y2] = "◙";
                     gameBoard[x1][y1] = ".";
                 } else if (gameBoard[x2][y2].equals(".")) {
+                    if(y > y1)
+                        setAnimation(-13);
+                    else if(y < y1)
+                        setAnimation(-14);
+                    else if(x < x1)
+                        setAnimation(-15);
+                    else if(x > x1)
+                        setAnimation(-16);
                     gameBoard[x2][y2] = box;
                     gameBoard[x1][y1] = array;
                 }
@@ -607,6 +709,10 @@ public class GameplayProcessorWeb extends Level {
         return gameBoard;
     }
 
+    @Override
+    public boolean getHideSpike() {
+        return super.getHideSpike();
+    }
 
     public int getSteps() {
         loadGameState();
@@ -640,22 +746,22 @@ public class GameplayProcessorWeb extends Level {
     }
 
 
-    public int game(String[][] gameBoard1, int level, String input) {
+    public int game(int level, String input) {
 
-        gameBoard = gameBoard1;
-      //  loadGameState();
+       // gameBoard = gameBoard1;
+        // loadGameState();
         key = false;
 
 
             //observer.onStepsUpdated(steps);
 
-                if(findHeroesX() == -1){
-                    String x = gameBoard[HeroX][HeroY];
-                    gameBoard[HeroX][HeroY] = "♀";
-                    //display(gameBoard);
-                    setMap(gameBoard);
-                    gameBoard[HeroX][HeroY] = x;
-                }
+//                if(findHeroesX() == -1){
+//                    String x = gameBoard[HeroX][HeroY];
+//                    gameBoard[HeroX][HeroY] = "♀";
+//                    //display(gameBoard);
+//                    setMap(gameBoard);
+//                    gameBoard[HeroX][HeroY] = x;
+//                }
 
               //  observer.onStepsUpdated(steps);
         steps = move(steps, input);
@@ -663,12 +769,13 @@ public class GameplayProcessorWeb extends Level {
 //                    gameBoard[HeroX][HeroY] = "♀";
 //                    setMap(gameBoard);
 //                }
-        if (steps == -1) {
+        if (steps == -34) {
             steps = displayGameBoardLevel(gameBoard, level);
             setMap(gameBoard);
+            setAnimation(-34);
         }
         if (checkEnd()) {
-            steps = -4;
+            steps = -33;
         }
         saveGameState();
 //            if ((steps = move(steps, input)) == -2) {

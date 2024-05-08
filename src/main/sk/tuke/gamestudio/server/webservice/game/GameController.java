@@ -24,7 +24,7 @@ public class GameController {
 
     @PostMapping("/move")
     public ResponseEntity<Integer> play(@RequestBody GameMoveRequest request) {
-        int steps = gameplayProcessorWeb.game(request.getGameBoard(), request.getLevel(), request.getInput());
+        int steps = gameplayProcessorWeb.game(request.getLevel(), request.getInput());
         return ResponseEntity.ok(steps);
     }
 
@@ -100,6 +100,11 @@ public class GameController {
         return ResponseEntity.ok(gameBoard); // Возвращает игровое поле клиенту
     }
 
+    @GetMapping("/hidden")
+    public ResponseEntity<Boolean> getHiddenSpike() {
+        Boolean hidden = gameplayProcessorWeb.getHideSpike();
+        return ResponseEntity.ok(hidden);
+    }
 }
 
 // Вспомогательный класс для принятия данных запроса
@@ -109,14 +114,6 @@ class GameMoveRequest {
     private String input;
 
     // Getters and Setters
-    public String[][] getGameBoard() {
-        return gameBoard;
-    }
-
-    public void setGameBoard(String[][] gameBoard) {
-        this.gameBoard = gameBoard;
-    }
-
     public int getLevel() {
         return level;
     }

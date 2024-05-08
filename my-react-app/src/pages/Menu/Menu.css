@@ -13,7 +13,7 @@ html, body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-image: url('image/MainMenu.jpg');
+    background-image: url('../../assets/image/MainMenu.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -88,13 +88,13 @@ html, body {
 /* Левое фоновое изображение */
 .side-image-left {
     left: 0;
-    background-image: url('image/testcomment.webp'); /* Путь к вашему изображению слева */
+    background-image: url('../../assets/image/testcomment.webp'); /* Путь к вашему изображению слева */
 }
 
 /* Правое фоновое изображение */
 .side-image-right {
     right: 0;
-    background-image: url('image/testcomment.webp'); /* Путь к вашему изображению справа */
+    background-image: url('../../assets/image/testcomment.webp'); /* Путь к вашему изображению справа */
 }
 
 .star {
@@ -135,12 +135,12 @@ html, body {
 
 .sides-image-left {
     left: 0; /* Расположение у левого края */
-    background-image: url('image/comment.png'); /* Изменен путь к вашему изображению слева */
+    background-image: url('../../assets/image/comment.png'); /* Изменен путь к вашему изображению слева */
 }
 
 .sides-image-right {
     right: 0; /* Расположение у правого края */
-    background-image: url('image/comment.png'); /* Изменен путь к вашему изображению справа */
+    background-image: url('../../assets/image/comment.png'); /* Изменен путь к вашему изображению справа */
 }
 
 .chapters-container {

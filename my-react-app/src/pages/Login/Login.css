@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh; /* Выравнивание по вертикали */
-    background-image: url('image/helltaker_image.jpeg'); /* Замените 'path/to/your/image.jpg' на путь к вашему изображению */
+    background-image: url('../../assets/image/helltaker_image.jpeg'); /* Замените 'path/to/your/image.jpg' на путь к вашему изображению */
     background-size: contain; /* Изменение размера изображения так, чтобы оно целиком помещалось в контейнер */
     background-position: center; /* Позволяет изображению быть выровненным по центру */
 }

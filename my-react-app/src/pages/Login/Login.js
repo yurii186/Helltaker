@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import './Login.css';
-import MainMenu from "./Menu";
+import MainMenu from "../Menu/Menu";
 
 function Login() {
     const [username, setUsername] = useState('');

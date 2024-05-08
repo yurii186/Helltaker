@@ -1,5 +1,5 @@
 import React from 'react';
-import Login from './Login'; // Путь к файлу с вашим компонентом Login
+import Login from './pages/Login/Login'; // Путь к файлу с вашим компонентом Login
 
 function App() {
   return (
