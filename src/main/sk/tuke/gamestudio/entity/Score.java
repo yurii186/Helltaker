@@ -20,16 +20,20 @@ public class Score implements Serializable {
 
     private int points;
 
+    @Column(name = "time", nullable = false)
+    private String time;
+
     @Column(name = "playedon", nullable = false)
     private Date playedOn;
 
     public Score(){}
 
-    public Score(String game, String player, int points, Date playedOn) {
+    public Score(String game, String player, int points, Date playedOn, String time) {
         this.game = game;
         this.player = player;
         this.points = points;
         this.playedOn = playedOn;
+        this.time = time;
     }
 
     public int getIdent() {
@@ -71,6 +75,10 @@ public class Score implements Serializable {
     public void setPlayedOn(Date playedOn) {
         this.playedOn = playedOn;
     }
+    public void setTime(String time) {
+        this.time = time;
+    }
+    public String getTime() {return time;}
 
     @Override
     public String toString() {
