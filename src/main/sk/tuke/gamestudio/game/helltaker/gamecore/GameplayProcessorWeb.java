@@ -769,7 +769,7 @@ public class GameplayProcessorWeb extends LevelWeb {
 //                    gameBoard[HeroX][HeroY] = "♀";
 //                    setMap(gameBoard);
 //                }
-        if (steps == -34) {
+        if (steps == -34 || steps == -1) {
             steps = displayGameBoardLevel(gameBoard, level);
             setMap(gameBoard);
             setAnimation(-34);
