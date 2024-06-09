@@ -342,13 +342,13 @@ function GamePlay({chapterLevel, returnMain, Exit, namePlayer}) {
         else if (move === -20)
             handleCantPunchRockUp()
         else if (move === -21)
-            handlePunchRockForSpikeLeft(HeroX, HeroY)
+            handlePunchRockLeft(HeroX, HeroY)
         else if (move === -22)
-            handlePunchRockForSpikeRight(HeroX, HeroY)
+            handlePunchRockRight(HeroX, HeroY)
         else if (move === -23)
-            handlePunchRockForSpikeDown(HeroX, HeroY)
+            handlePunchRockDown(HeroX, HeroY)
         else if (move === -24)
-            handlePunchRockForSpikeUp(HeroX, HeroY)
+            handlePunchRockUp(HeroX, HeroY)
         else if(move === -29)
             handleCantMoveLeft()
         else if(move === -30)
@@ -620,79 +620,79 @@ function GamePlay({chapterLevel, returnMain, Exit, namePlayer}) {
     };
 
 
-    const handlePunchRockForSpikeLeft = (HeroX, HeroY) => {
-
-        const rowIndex = HeroX; // Индекс строки
-        const cellIndex = HeroY - 1; // Индекс столбца
-        const rockId = `spike-and-rock-${rowIndex}-${cellIndex}`;
-        const rockElement = document.getElementById(rockId);
-
-        setAction('punch');
-        setDirection('left')
-
-        if (rockElement) {
-            rockElement.classList.add('animate-rock-left');
-            setTimeout(() => {
-                setAction('idle')
-                rockElement.classList.remove('animate-rock-left');
-            }, 500); // Удаление класса анимации после ее завершения
-        }
-    };
-
-    const handlePunchRockForSpikeRight = (HeroX, HeroY) => {
-
-        const rowIndex = HeroX; // Индекс строки
-        const cellIndex = HeroY + 1; // Индекс столбца
-        const rockId = `spike-and-rock-${rowIndex}-${cellIndex}`;
-        const rockElement = document.getElementById(rockId);
-
-        setAction('punch');
-        setDirection('right')
-
-        if (rockElement) {
-            rockElement.classList.add('animate-rock-right');
-            setTimeout(() => {
-                setAction('idle')
-                rockElement.classList.remove('animate-rock-right');
-            }, 500); // Удаление класса анимации после ее завершения
-        }
-    };
-
-
-    const handlePunchRockForSpikeDown = (HeroX, HeroY) => {
-
-        const rowIndex = HeroX + 1; // Индекс строки
-        const cellIndex = HeroY;
-        const rockId = `spike-and-rock-${rowIndex}-${cellIndex}`;
-        const rockElement = document.getElementById(rockId);
-
-        setAction('punch');
-
-        if (rockElement) {
-            rockElement.classList.add('animate-rock-down');
-            setTimeout(() => {
-                setAction('idle')
-                rockElement.classList.remove('animate-rock-down');
-            }, 500); // Удаление класса анимации после ее завершения
-        }
-    };
-
-    const handlePunchRockForSpikeUp = (HeroX, HeroY) => {
-        const rowIndex = HeroX - 1;
-        const cellIndex = HeroY;
-        const rockId = `spike-and-rock-${rowIndex}-${cellIndex}`;
-        const rockElement = document.getElementById(rockId);
-
-        setAction('punch');
-
-        if (rockElement) {
-            rockElement.classList.add('animate-rock-up');
-            setTimeout(() => {
-                setAction('idle')
-                rockElement.classList.remove('animate-rock-up');
-            }, 500); // Удаление класса анимации после ее завершения
-        }
-    };
+    // const handlePunchRockForSpikeLeft = (HeroX, HeroY) => {
+    //
+    //     const rowIndex = HeroX; // Индекс строки
+    //     const cellIndex = HeroY - 1; // Индекс столбца
+    //     const rockId = `spike-and-rock-${rowIndex}-${cellIndex}`;
+    //     const rockElement = document.getElementById(rockId);
+    //
+    //     setAction('punch');
+    //     setDirection('left')
+    //
+    //     if (rockElement) {
+    //         rockElement.classList.add('animate-rock-left');
+    //         setTimeout(() => {
+    //             setAction('idle')
+    //             rockElement.classList.remove('animate-rock-left');
+    //         }, 500); // Удаление класса анимации после ее завершения
+    //     }
+    // };
+    //
+    // const handlePunchRockForSpikeRight = (HeroX, HeroY) => {
+    //
+    //     const rowIndex = HeroX; // Индекс строки
+    //     const cellIndex = HeroY + 1; // Индекс столбца
+    //     const rockId = `spike-and-rock-${rowIndex}-${cellIndex}`;
+    //     const rockElement = document.getElementById(rockId);
+    //
+    //     setAction('punch');
+    //     setDirection('right')
+    //
+    //     if (rockElement) {
+    //         rockElement.classList.add('animate-rock-right');
+    //         setTimeout(() => {
+    //             setAction('idle')
+    //             rockElement.classList.remove('animate-rock-right');
+    //         }, 500); // Удаление класса анимации после ее завершения
+    //     }
+    // };
+    //
+    //
+    // const handlePunchRockForSpikeDown = (HeroX, HeroY) => {
+    //
+    //     const rowIndex = HeroX + 1; // Индекс строки
+    //     const cellIndex = HeroY;
+    //     const rockId = `spike-and-rock-${rowIndex}-${cellIndex}`;
+    //     const rockElement = document.getElementById(rockId);
+    //
+    //     setAction('punch');
+    //
+    //     if (rockElement) {
+    //         rockElement.classList.add('animate-rock-down');
+    //         setTimeout(() => {
+    //             setAction('idle')
+    //             rockElement.classList.remove('animate-rock-down');
+    //         }, 500); // Удаление класса анимации после ее завершения
+    //     }
+    // };
+    //
+    // const handlePunchRockForSpikeUp = (HeroX, HeroY) => {
+    //     const rowIndex = HeroX - 1;
+    //     const cellIndex = HeroY;
+    //     const rockId = `spike-and-rock-${rowIndex}-${cellIndex}`;
+    //     const rockElement = document.getElementById(rockId);
+    //
+    //     setAction('punch');
+    //
+    //     if (rockElement) {
+    //         rockElement.classList.add('animate-rock-up');
+    //         setTimeout(() => {
+    //             setAction('idle')
+    //             rockElement.classList.remove('animate-rock-up');
+    //         }, 500); // Удаление класса анимации после ее завершения
+    //     }
+    // };
 
     const handleCantMoveRight = () => {
         setAction('moveCantRight'); // Устанавливаем действие движения вниз
@@ -853,7 +853,7 @@ function GamePlay({chapterLevel, returnMain, Exit, namePlayer}) {
                                                                 cell === '_' ? <div className={`spike-sprite ${
                                                                         hiddenSpike ? 'spike-close' : 'spike-static-close'
                                                                     }`}></div> :
-                                                                    cell === '◙' ? <div className={`spike-and-rock-sprite ${
+                                                                    cell === '◘' ? <div className={`spike-and-rock-sprite ${
                                                                             hiddenSpike ? 'spike-close' : 'spike-static-close'
                                                                         }`} id={`spike-and-rock-${rowIndex}-${cellIndex}`}></div> :
                                                                         cell === '†' ? <>
