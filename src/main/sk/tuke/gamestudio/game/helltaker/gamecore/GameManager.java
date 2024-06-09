@@ -70,7 +70,7 @@ public class GameManager {
         }
         // ScoreUpdater scoreUpdater = new ScoreUpdater();
         if(helltaker.getName() != null)
-            scoreService.addScore(new Score(helltaker.getGame(), helltaker.getName(), score, new Date()));
+            scoreService.addScore(new Score(helltaker.getGame(), helltaker.getName(), score, new Date(), "100"));
            // scoreUpdater.addOrUpdateScore(score);
 
 
