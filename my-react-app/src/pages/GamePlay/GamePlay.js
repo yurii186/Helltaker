@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect , useRef} from "react";
 import './GamePlay.css';  // Убедитесь, что стили правильно подключены
 
 
@@ -17,6 +17,35 @@ function GamePlay({chapterLevel, returnMain, Exit, namePlayer}) {
     });
     const [topPlayers, setTopPlayers] = useState([]);
     const [score, setScore] = useState(0);
+    const [timer, setTimer] = useState(false);
+
+    const [secondsElapsed, setSecondsElapsed] = useState(0);
+    const intervalRef = useRef(null);
+
+    useEffect(() => {
+        if (timer) {
+            startTimer();
+        } else {
+            stopTimer();
+        }
+
+        return () => stopTimer(); // Очищаем интервал при размонтировании компонента
+    }, [timer]);
+
+    const startTimer = () => {
+        if (intervalRef.current !== null) return; // Уже запущен
+
+        intervalRef.current = setInterval(() => {
+            setSecondsElapsed(prevSeconds => prevSeconds + 1);
+        }, 1000);
+    };
+
+    const stopTimer = () => {
+        if (intervalRef.current !== null) {
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+        }
+    };
 
     useEffect(() => {
         startGame();
@@ -206,10 +235,12 @@ function GamePlay({chapterLevel, returnMain, Exit, namePlayer}) {
 
     const startGame = async () => {
         fetchGameBoard();
+        setTimer(true);
     };
 
     const fetchGameBoard = async () => {
         try {
+
             if (chapterLevel === 0) {
                 const response = await fetch('http://localhost:8080/game/start');
                 const data = await response.json();
@@ -714,7 +745,7 @@ function GamePlay({chapterLevel, returnMain, Exit, namePlayer}) {
     async function fetchTopPlayers() {
         try {
             if(namePlayer !== null && gameState.score === null)
-                await addScore(namePlayer,'Helltaker', score, new Date().toISOString())
+                await addScore(namePlayer,'Helltaker', score, new Date().toISOString());
 
             // Замените URL на актуальный адрес вашего сервера.
             const response = await fetch(`http://localhost:8080/api/score/Helltaker`);
@@ -730,8 +761,9 @@ function GamePlay({chapterLevel, returnMain, Exit, namePlayer}) {
     }
 
 
-    async function addScore(player, game, points, playedOn) {
-        const scoreData = { player, game, points, playedOn };
+
+    const addScore = async (player, game, points, playedOn) => {
+        const scoreData = { player, game, points, playedOn, time: secondsElapsed.toString() };
 
         try {
             const response = await fetch('http://localhost:8080/api/score', {
@@ -749,7 +781,7 @@ function GamePlay({chapterLevel, returnMain, Exit, namePlayer}) {
         } catch (error) {
             console.error("Error adding score:", error);
         }
-    }
+    };
 
 
     return (
