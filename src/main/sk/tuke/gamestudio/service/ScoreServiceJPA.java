@@ -28,6 +28,7 @@ public class ScoreServiceJPA implements ScoreService {
         if (existingScore != null && newScore.getPoints() > existingScore.getPoints()) {
             existingScore.setPoints(newScore.getPoints());
             existingScore.setPlayedOn(newScore.getPlayedOn());
+            existingScore.setTime(newScore.getTime());
             entityManager.merge(existingScore); // Обновляем существующий счет
         } else if (existingScore == null) {
             entityManager.persist(newScore); // Сохраняем новый счет, если такого игрока нет
